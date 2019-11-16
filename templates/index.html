@@ -17,10 +17,20 @@
                 <div class="column header__column--wide">
                     <h1 class="header__header">Strona&nbsp;główna</h1>
                 </div>
+                <!-- if not logged -->
                 <div class="column header__column--narrow">
-                    <a href="/login.html" class="">Zaloguj&nbsp;się</a> 
-                    <a href="/register.html" class="">Zarejestruj&nbsp;się</a> 
+                    <div class="row row--space-between">
+                        <a href="/login.html" class="button button--white-background button--black-text">Zaloguj&nbsp;się</a> 
+                        <a href="/register.html" class="button button--black-background button--white-text button--white-border">Zarejestruj&nbsp;się</a> 
+                    </div>
                 </div>
+                <!-- else -->                
+                <!-- <div class="column header__column--narrow">
+                    <form action="/" class="row row--vertical-end">
+                        <button type="submit" class="button button--black-background button--white-text button--white-border">Wyloguj się</button> 
+                    </form>
+                </div> -->
+                <!-- endif -->
             </div>
         </div>
     </header>

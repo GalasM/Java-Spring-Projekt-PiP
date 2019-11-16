@@ -16,12 +16,12 @@
     &__column {
         &--wide {
             padding-left: 360px;
-            max-width: calc(100% - 430px);
+            max-width: calc(100% - 460px);
             width: 100%;
         }
 
         &--narrow {
-            max-width: 400px;
+            max-width: 430px;
             width: 100%;
         }
     }
