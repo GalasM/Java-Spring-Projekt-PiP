@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Result</h1>
+<tr th:each="student: ${allStudents}">
+    <td th:text="${student.getId()}"></td>
+    <td th:text="${student.getName()}"></td>
+    <td th:text="${student.getPassportNumber()}"></td>
+    <br />
+</tr>
+<a href="/">Powrót</a>
+</body>
+</html>

@@ -1,4 +1,4 @@
-INSERT INTO TBL_EMPLOYEES (first_name, last_name, email) VALUES
-  ('Lokesh', 'Gupta', 'abc@gmail.com'),
-  ('Deja', 'Vu', 'xyz@email.com'),
-  ('Caption', 'America', 'cap@marvel.com');
+insert into student
+values(10001,'Ranga', 'E1234567');
+insert into student
+values(10002,'Ravi', 'A1234568');
