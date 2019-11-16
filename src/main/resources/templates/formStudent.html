@@ -17,8 +17,7 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="#" th:action="@{/student}" th:object="${student}" method="post">
-    <p>Id: <input type="text" th:field="*{id}" /></p>
+<form action="#" th:action="@{/add}" th:object="${student}" method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Passport number: <input type="text" th:field="*{passportNumber}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>

@@ -8,25 +8,25 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller    // This means that this class is a Controller
 public class StudentController {
-    @Autowired
-     private StudentJdbcRepository userRepository;
+    private final StudentJdbcRepository userRepository;
 
-    @GetMapping("/index")
-    public String index(){
-        return "index";
+    @Autowired
+    public StudentController(StudentJdbcRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    @GetMapping("/student")
+    @GetMapping("/formStudent")
     public String greetingForm(Model model) {
         model.addAttribute("student", new Student());
         return "formStudent";
     }
 
-    @PostMapping("/student")
+    @PostMapping("/add")
     public String greetingSubmit(@ModelAttribute ("student")Student student,
         BindingResult result, ModelMap model) {
             if (result.hasErrors()) {
@@ -34,7 +34,8 @@ public class StudentController {
             }
         model.addAttribute("name", student.getName());
         model.addAttribute("passportNumber", student.getPassportNumber());
-        model.addAttribute("id", student.getId());
+        String id = UUID.randomUUID().toString();
+        student.setId(id);
         userRepository.insert(student);
         return "result";
     }
@@ -44,12 +45,6 @@ public class StudentController {
         List<Student> list = userRepository.findAll();
         model.addAttribute("allStudents", list);
         return "allUsers";
-    }
-
-    @PostMapping(value="/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser (@RequestBody Student st) {
-        userRepository.insert(st);
-        return "Saved";
     }
 
    /* @Autowired // This means to get the bean called userRepository

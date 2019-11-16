@@ -3,13 +3,13 @@ package hello;
 import java.io.Serializable;
 
 public class Student implements Serializable {
-    private long id;
+    private String id;
     private String name;
     private String passportNumber;
     public Student() {
         super();
     }
-    public Student(Long id, String name, String passportNumber) {
+    public Student(String id, String name, String passportNumber) {
         super();
         this.id = id;
         this.name = name;
@@ -20,10 +20,10 @@ public class Student implements Serializable {
         this.name = name;
         this.passportNumber = passportNumber;
     }
-    public Long getId() {
+    public String getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getName() {
