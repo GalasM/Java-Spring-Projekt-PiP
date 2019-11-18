@@ -13,14 +13,14 @@
 
         li {
             list-style: none;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             @include display-flex;
             @include justify-content(center);
 
             a {
                 color: $black;
-                font-size: 16px;
-                line-height: 18px;
+                font-size: 20px;
+                line-height: 26px;
                 text-align: center;
             }
         }
