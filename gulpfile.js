@@ -37,7 +37,7 @@ gulp.task('sass', function(){
         .pipe(rename({
             extname: '.min.css'
         }))
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('./src/main/resources/dist'))
 });
 
 // JAVASCRIPT
@@ -48,10 +48,10 @@ gulp.task("js", function(){
         presets: ['es2015'],
     })
     .bundle()
-    .pipe(source('main.js', './dist'))
+    .pipe(source('main.js', './src/main/resources/dist'))
     .pipe(buffer())
     .pipe(uglify({mangle: false}))
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest('./src/main/resources/dist'))
 });
 
 
@@ -68,7 +68,7 @@ gulp.task('watch', ['browserSync'], function(){
 // CLEAN
 
 gulp.task('clean', function(){
-    del(['./dist']);
+    del(['./src/main/resources/dist']);
 });
 
 // BROWSER SYNC
@@ -76,7 +76,7 @@ gulp.task('clean', function(){
 gulp.task('browserSync', function(){
     browserSync({
         server: {
-            baseDir: "./src/main/resources/templates/"
+            baseDir: "./"
         }
     });
 });
