@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Zawodnicy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index.html">Strona Główna</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/footballers">Zawodnicy</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/sklad">Skład</a>
+        </li>
+    </ul>
+</nav>
+<br><br>
+<div class="container">
+    <h2>Lista zadowników</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Pozycja</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="footballers: ${allFootballers}">
+            <td th:text="${footballers.getId()}"></td>
+            <td th:text="${footballers.getImie()}"></td>
+            <td th:text="${footballers.getNazwisko()}"></td>
+            <td th:text="${footballers.getPozycja()}"></td>
+            <td><button name="subject" type = "submit" class="btn btn-warning btn-sm" value = "${footballers.getId()}">Edytuj</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Dodaj zawodnika
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Dodaj zawodnika</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                   <form action = "addFootballer"  method="post">
+                       <div class="form-group">
+                            <label for="imie">Imie:</label>
+                            <input type="text" class="form-control" id="imie" placeholder="Podaj imie" name="imie" required>
+                            <div class="valid-feedback">Uzupełniono</div>
+                            <div class="invalid-feedback">Proszę wypełnić pole</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nazwisko">Nazwisko:</label>
+                            <input type="text" class="form-control" id="nazwisko" placeholder="Podaj nazwisko" name="nazwisko" required>
+                            <div class="valid-feedback">Uzupełniono</div>
+                            <div class="invalid-feedback">Proszę wypełnić pole</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pozycja">Pozycja:</label>
+                            <select class="custom-select" id = "pozycja" name="pozycja" required>
+                                <option value="">Pozycja</option>
+                                <option value="N">Napastnik</option>
+                                <option value="P">Pomocnik</option>
+                                <option value="O">Obrońca</option>
+                                <option value="BR">Bramkarz</option>
+                            </select>
+                            <div class="invalid-feedback">Proszę wypełnić pole</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<br><br>
+</div>
+
+</body>
+</html>
