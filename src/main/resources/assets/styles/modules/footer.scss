@@ -5,12 +5,12 @@
     width: 100%;
     z-index: 2;
     position: relative;
+    background-color: $primary-dark-grey;
     
 	&__container {
         max-width: 1440px;
-        width: 100%;
-        background-color: $primary-dark-grey;
-        padding: 22px 30px;
+        width: 100%;        
+        padding: 21px 30px;
 
         span {
             font-size: 13px;
