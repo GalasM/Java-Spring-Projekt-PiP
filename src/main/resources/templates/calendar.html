@@ -1,0 +1,46 @@
+<html lang="pl" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+
+    <link href="../static/css/calendar.css" th:href="@{/css/calendar.css}" rel="stylesheet" />
+    <link rel='stylesheet' href='/webjars/fullcalendar/packages/core/main.css' />
+    <link rel='stylesheet' href='/webjars/fullcalendar/packages/daygrid/main.css' />
+
+
+    <script src='/webjars/fullcalendar/packages/core/main.js'></script>
+    <script src='/webjars/fullcalendar/packages/daygrid/main.js'></script>
+
+    <script src="../static/js/calendar.js" th:src="@{/js/calendar.js}"></script>
+    <title>Kalendarz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index.html">Strona Główna</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/footballers">Zawodnicy</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/sklad">Skład</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/calendar">Kalendarz</a>
+        </li>
+    </ul>
+</nav>
+<div><button>Dodaj wydarzenie</button><p></div>
+<div id='calendar'></div>
+<div>
+    <p>
+        <a href="/">Powrót</a>
+</div>
+</body>
+</html>

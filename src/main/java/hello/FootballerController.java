@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.UUID;
@@ -27,18 +28,14 @@ public class FootballerController {
     }
 
     @PostMapping("/addFootballer")
-    public String greetingSubmit(@ModelAttribute ("footballer")Footballer footballer, BindingResult result, ModelMap model) {
-        if (result.hasErrors())
-        {
-            return "error";
-        }
+    public RedirectView greetingSubmit(@ModelAttribute ("footballer")Footballer footballer, BindingResult result, ModelMap model) {
         model.addAttribute("imie", footballer.getImie());
         model.addAttribute("nazwisko", footballer.getNazwisko());
         model.addAttribute("pozycja", footballer.getPozycja());
         String id = UUID.randomUUID().toString();
         footballer.setId(id);
         uRepo.insert(footballer);
-        return "/footballers";
+        return new RedirectView("footballers");
     }
 
     @GetMapping("/footballers")
