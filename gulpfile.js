@@ -27,7 +27,7 @@ gulp.task('default', function(done){
 // SASS
 
 gulp.task('sass', function(){
-    return gulp.src('./assets/styles/main.scss')
+    return gulp.src('./src/main/resources/assets/styles/main.scss')
         .pipe(sass({
                 "errLogToConsole": true
             }).on('error', sass.logError)
@@ -43,7 +43,7 @@ gulp.task('sass', function(){
 // JAVASCRIPT
 
 gulp.task("js", function(){
-    return browserify('./assets/scripts/main.js')
+    return browserify('./src/main/resources/assets/scripts/main.js')
     .transform('babelify',{
         presets: ['es2015'],
     })
@@ -58,9 +58,9 @@ gulp.task("js", function(){
 // WATCH
 
 gulp.task('watch', ['browserSync'], function(){
-    gulp.watch('./assets/styles/**/*', ['sass', browserSync.reload]);
-    gulp.watch('./assets/scripts/main.js', ['js', browserSync.reload]);
-    gulp.watch('./templates/*.html', [browserSync.reload]);
+    gulp.watch('./src/main/resources/assets/styles/**/*', ['sass', browserSync.reload]);
+    gulp.watch('./src/main/resources/assets/scripts/main.js', ['js', browserSync.reload]);
+    gulp.watch('./src/main/resources/templates/*.html', [browserSync.reload]);
 });
 
 
@@ -76,7 +76,7 @@ gulp.task('clean', function(){
 gulp.task('browserSync', function(){
     browserSync({
         server: {
-            baseDir: "./"
+            baseDir: "./src/main/resources/templates/"
         }
     });
 });
