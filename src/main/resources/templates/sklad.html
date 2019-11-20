@@ -7,58 +7,89 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>    
+
+    <link rel="stylesheet" type="text/css" href="../static/css/main.min.css"  th:href=@{/css/main.min.css}>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="/index.html">Strona Główna</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/footballers">Zawodnicy</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/sklad">Skład</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/calendar">Kalendarz</a>
-        </li>
-    </ul>
-</nav>
-<br><br>
-
-<div class="container">
-    <h2>Skład drużyny</h2>
-    <ul class="list-group">
-        <li class="list-group-item list-group-item-success">Napastnicy</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-
-        <li class="list-group-item list-group-item-warning">Pomocnicy</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-
-        <li class="list-group-item list-group-item-primary">Obrońcy</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-
-        <li class="list-group-item list-group-item-info">Bramkarz</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-
-        <li class="list-group-item list-group-item-dark">Ławka rezerwowych</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-        <li class="list-group-item list-group-item-light">Light item</li>
-    </ul>
-</div>
-<br><br>
-
+        <header class="header">
+                <div class="header__container container">
+                    <div class="row row--space-between">
+                        <div class="column header__column--wide">
+                            <h1 class="header__header">Skład</h1>
+                        </div>
+                        <!-- if not logged -->
+                        <div class="column header__column--narrow">
+                            <div class="row row--space-between">
+                                <a href="/login" class="button button--white-background button--black-text">Zaloguj&nbsp;się</a>
+                                <a href="/register" class="button button--black-background button--white-text button--white-border">Zarejestruj&nbsp;się</a>
+                            </div>
+                        </div>
+                        <!-- else -->                
+                        <!-- <div class="column header__column--narrow">
+                            <form action="/" class="row row--vertical-end">
+                                <button type="submit" class="button button--black-background button--white-text button--white-border">Wyloguj się</button> 
+                            </form>
+                        </div> -->
+                        <!-- endif -->
+                    </div>
+                </div>
+            </header>
+            <div class="page">
+                    <div class="container page__container">
+                        <div class="row row--space-between">
+                            <aside class="sidebar">
+                                <ul class="container">
+                                    <li><a href="/">Strona&nbsp;główna</a></li>
+                                    <li><a href="/footballers">Zawodnicy</a></li>
+                                    <li><a href="/calendar">Kalendarz</a></li>
+                                    <li><a href="/sklad">Skład</a></li>
+                                    <li><a href="#">Statystyki</a></li>
+                                    <li><a href="#">Finanse</a></li>
+                                </ul>
+                            </aside>
+                            <div class="board">
+                                <div class="board__container container">
+                                    <div class="row">
+                                        <h2 class="section-header">Skład drużyny</h2>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-success">Napastnicy</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                
+                                        <li class="list-group-item list-group-item-warning">Pomocnicy</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                
+                                        <li class="list-group-item list-group-item-primary">Obrońcy</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                
+                                        <li class="list-group-item list-group-item-info">Bramkarz</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                
+                                        <li class="list-group-item list-group-item-dark">Ławka rezerwowych</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                        <li class="list-group-item list-group-item-light">Light item</li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <footer id="footer" class="footer">
+                    <div class="container footer__container">
+                        <div class="row row--space-between">
+                            <span>Wszelkie prawa zastrzeżone &copy; 2019 PiP</span>
+                            <span>Projekt i&nbsp;wykonanie: <strong>Galas, Gluch, Faron, Grzyb</strong></span>
+                        </div>
+                    </div>
+                </footer>
 </body>
 </html>

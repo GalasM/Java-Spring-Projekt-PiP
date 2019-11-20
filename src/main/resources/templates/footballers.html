@@ -8,109 +8,141 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/main.min.css"  th:href=@{/css/main.min.css}>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="/index.html">Strona Główna</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/footballers">Zawodnicy</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/sklad">Skład</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/calendar">Kalendarz</a>
-        </li>
-    </ul>
-</nav>
-<br><br>
-<div class="container">
-    <h2>Lista zadowników</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Imie</th>
-            <th>Nazwisko</th>
-            <th>Pozycja</th>
-            <th>Opcje</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="footballers: ${allFootballers}">
-            <td th:text="${footballers.getId()}"></td>
-            <td th:text="${footballers.getImie()}"></td>
-            <td th:text="${footballers.getNazwisko()}"></td>
-            <td th:text="${footballers.getPozycja()}"></td>
-            <td><button name="subject" type = "submit" class="btn btn-warning btn-sm" value = "${footballers.getId()}">Edytuj</button></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="container">
-    <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Dodaj zawodnika
-    </button>
-
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Dodaj zawodnika</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <header class="header">
+        <div class="header__container container">
+            <div class="row row--space-between">
+                <div class="column header__column--wide">
+                    <h1 class="header__header">Zawodnicy</h1>
                 </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                   <form action = "addFootballer"  method="post">
-                       <div class="form-group">
-                            <label for="imie">Imie:</label>
-                            <input type="text" class="form-control" id="imie" placeholder="Podaj imie" name="imie" required>
-                            <div class="valid-feedback">Uzupełniono</div>
-                            <div class="invalid-feedback">Proszę wypełnić pole</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nazwisko">Nazwisko:</label>
-                            <input type="text" class="form-control" id="nazwisko" placeholder="Podaj nazwisko" name="nazwisko" required>
-                            <div class="valid-feedback">Uzupełniono</div>
-                            <div class="invalid-feedback">Proszę wypełnić pole</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="pozycja">Pozycja:</label>
-                            <select class="custom-select" id = "pozycja" name="pozycja" required>
-                                <option value="">Pozycja</option>
-                                <option value="N">Napastnik</option>
-                                <option value="P">Pomocnik</option>
-                                <option value="O">Obrońca</option>
-                                <option value="BR">Bramkarz</option>
-                            </select>
-                            <div class="invalid-feedback">Proszę wypełnić pole</div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                <!-- if not logged -->
+                <div class="column header__column--narrow">
+                    <div class="row row--space-between">
+                        <a href="/login" class="button button--white-background button--black-text">Zaloguj&nbsp;się</a>
+                        <a href="/register" class="button button--black-background button--white-text button--white-border">Zarejestruj&nbsp;się</a>
+                    </div>
+                </div>
+                <!-- else -->                
+                <!-- <div class="column header__column--narrow">
+                    <form action="/" class="row row--vertical-end">
+                        <button type="submit" class="button button--black-background button--white-text button--white-border">Wyloguj się</button> 
                     </form>
-                </div>
+                </div> -->
+                <!-- endif -->
+            </div>
+        </div>
+    </header>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+<div class="page">
+    <div class="container page__container">
+        <div class="row row--space-between">
+            <aside class="sidebar">
+                <ul class="container">
+                    <li><a href="/">Strona&nbsp;główna</a></li>
+                    <li><a href="/footballers">Zawodnicy</a></li>
+                    <li><a href="/calendar">Kalendarz</a></li>
+                    <li><a href="/sklad">Skład</a></li>
+                    <li><a href="#">Statystyki</a></li>
+                    <li><a href="#">Finanse</a></li>
+                </ul>
+            </aside>
+            <div class="board">
+                <div class="board__container container">
+                <div class="column">
+                    <div class="row">
+                            <h2 class="section-header">Lista zadowników</h2>
+                        </div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Imie</th>
+                                    <th>Nazwisko</th>
+                                    <th>Pozycja</th>
+                                    <th>Opcje</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="footballers: ${allFootballers}">
+                                    <td th:text="${footballers.getId()}"></td>
+                                    <td th:text="${footballers.getImie()}"></td>
+                                    <td th:text="${footballers.getNazwisko()}"></td>
+                                    <td th:text="${footballers.getPozycja()}"></td>
+                                    <td><button name="subject" type = "submit" class="btn btn-warning btn-sm" value = "${footballers.getId()}">Edytuj</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            <!-- Button to Open the Modal -->
+                            <button type="button" class="button button--white-background button--black-text" data-toggle="modal" data-target="#myModal">
+                                Dodaj zawodnika
+                            </button>
+                            <!-- The Modal -->
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                        
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title ">Dodaj zawodnika</h4>
+                                            <button type="button" class="close " data-dismiss="modal">&times;</button>
+                                        </div>
+                        
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                           <form action = "addFootballer"  method="post">
+                                               <div class="form-group">
+                                                    <label for="imie">Imie:</label>
+                                                    <input type="text" class="form-control" id="imie" placeholder="Podaj imie" name="imie" required>
+                                                    <div class="valid-feedback">Uzupełniono</div>
+                                                    <div class="invalid-feedback">Proszę wypełnić pole</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nazwisko">Nazwisko:</label>
+                                                    <input type="text" class="form-control" id="nazwisko" placeholder="Podaj nazwisko" name="nazwisko" required>
+                                                    <div class="valid-feedback">Uzupełniono</div>
+                                                    <div class="invalid-feedback">Proszę wypełnić pole</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pozycja">Pozycja:</label>
+                                                    <select class="custom-select" id = "pozycja" name="pozycja" required>
+                                                        <option value="">Pozycja</option>
+                                                        <option value="N">Napastnik</option>
+                                                        <option value="P">Pomocnik</option>
+                                                        <option value="O">Obrońca</option>
+                                                        <option value="BR">Bramkarz</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">Proszę wypełnić pole</div>
+                                                </div>
+                        
+                                                <button type="submit" class="btn btn-primary">Dodaj</button>
+                                            </form>
+                                        </div>
+                        
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+                            </div>
                 </div>
-
             </div>
         </div>
     </div>
-<br><br>
 </div>
-
+<footer id="footer" class="footer">
+    <div class="container footer__container">
+        <div class="row row--space-between">
+            <span>Wszelkie prawa zastrzeżone &copy; 2019 PiP</span>
+            <span>Projekt i&nbsp;wykonanie: <strong>Galas, Gluch, Faron, Grzyb</strong></span>
+        </div>
+    </div>
+</footer>
+</div>
 </body>
 </html>

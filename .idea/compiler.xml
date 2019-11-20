@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="complete" />
         <module name="Projekt-PiP" />
+        <module name="gs-rest-service" />
+        <module name="complete" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="complete" target="1.8" />
+      <module name="gs-rest-service" target="1.8" />
       <module name="Projekt-PiP" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -19,6 +21,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Projekt-PiP" options="-parameters" />
       <module name="complete" options="-parameters" />
+      <module name="gs-rest-service" options="-parameters" />
     </option>
   </component>
 </project>
