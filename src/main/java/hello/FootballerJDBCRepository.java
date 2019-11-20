@@ -29,6 +29,7 @@ public class FootballerJDBCRepository {
             footballer.setImie(rs.getString("imie"));
             footballer.setNazwisko(rs.getString(("nazwisko")));
             footballer.setPozycja(rs.getString("pozycja"));
+            footballer.setStatus(rs.getString("status"));
             return footballer;
         }
     }
@@ -46,10 +47,30 @@ public class FootballerJDBCRepository {
     }
 
     void insert(Footballer footballer) {
-        jdbcTemplate.update("insert into footballer (id, imie, nazwisko, pozycja) " + "values(?, ?, ?, ?)", footballer.getId(), footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja());
+        jdbcTemplate.update("insert into footballer (id, imie, nazwisko, pozycja, status) " + "values(?, ?, ?, ?, ?)", footballer.getId(), footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja(), footballer.getStatus());
     }
 
     public int update(Footballer footballer) {
-        return jdbcTemplate.update("update footballer " + " set name = ?, nazwisko = ?, pozycja = ? " + " where id = ?", footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja(), footballer.getId());
+        return jdbcTemplate.update("update footballer " + " set name = ?, nazwisko = ?, pozycja = ?, status = ? " + " where id = ?", footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja(), footballer.getStatus(), footballer.getId());
+    }
+
+    List<Footballer> findN() {
+        return jdbcTemplate.query("select * from footballer where pozycja = 'N' and status = 'S'", new FootballerRowMapper());
+    }
+
+    List<Footballer> findP() {
+        return jdbcTemplate.query("select * from footballer where pozycja = 'P' and status = 'S'", new FootballerRowMapper());
+    }
+
+    List<Footballer> findO() {
+        return jdbcTemplate.query("select * from footballer where pozycja = 'O' and status = 'S'", new FootballerRowMapper());
+    }
+
+    List<Footballer> findBR() {
+        return jdbcTemplate.query("select * from footballer where pozycja = 'BR' and status = 'S'", new FootballerRowMapper());
+    }
+
+    List<Footballer> findR() {
+        return jdbcTemplate.query("select * from footballer where status = 'R'", new FootballerRowMapper());
     }
 }

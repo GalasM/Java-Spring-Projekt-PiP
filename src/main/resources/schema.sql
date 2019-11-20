@@ -7,6 +7,7 @@ create table footballer
    imie varchar(255) not null,
    nazwisko varchar(255) not null,
    pozycja varchar(255) not null,
+   status varchar(255) not null,
    primary key(id)
 );
 
