@@ -1,19 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+    var calendarDiv = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarDiv, {
+        plugins: [ 'dayGrid', 'list' ],
         defaultView: 'dayGridMonth',
-        defaultDate: '2019-11-07',
         header: {
-            left: 'prev,next today',
+            left: 'today prev,next',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'dayGridMonth,listMonth'
         },
-        events: [
+        buttonText: {
+            today: 'Today',
+            month: 'Grid',
+            list: 'List'
+        },
+        allDayText: '',
+        height: 'auto',
+        eventSources: [
             {
-                title: 'All Day Event',
-                start: '2019-11-01'
+                url: '/api/event/all', // use the `url` property
             }
         ]
     });

@@ -18,3 +18,20 @@ create table news
   tresc varchar(255) not null,
   primary key(id)
 );
+
+create table event
+(
+  id varchar(255) not null,
+  title varchar(255) not null,
+  start varchar(255) not null,
+  end varchar(255),
+  type varchar(255)
+);
+
+create table extendProps
+(
+  id varchar(255) not null,
+  name varchar(255),
+  value varchar(255),
+  eventId varchar(255)
+);
