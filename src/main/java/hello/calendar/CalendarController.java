@@ -38,4 +38,11 @@ public class CalendarController {
             Repo.insert(event);
         return new RedirectView("calendar");
     }
+
+    @PostMapping("/removeEvent")
+    public RedirectView removeEvent(@ModelAttribute("event") Event event, ModelMap model) {
+
+        Repo.deleteById(event.getId());
+        return new RedirectView("calendar");
+    }
 }
