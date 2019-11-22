@@ -60,7 +60,7 @@
                                             <li class="list-group-item list-group-item-light">
                                                 <td th:text="${footballersN.getImie()}"></td>
                                                 <td th:text="${footballersN.getNazwisko()}"></td>
-                                                <i class="fas fa-chevron-circle-down" style="float: right; color: darkred;"></i>
+                                                <td><a th:href="@{/addR(id=${footballersN.getId()})}" class="fas fa-chevron-circle-down" style="color:red; float:right;"></a></td>
                                             </li>
                                         </tr>
 
@@ -69,14 +69,16 @@
                                             <li class="list-group-item list-group-item-light">
                                                 <td th:text="${footballersP.getImie()}"></td>
                                                 <td th:text="${footballersP.getNazwisko()}"></td>
-                                                <i class="fas fa-chevron-circle-down" style="float: right; color: darkred;"></i>                                        </tr>
+                                                <td><a th:href="@{/addR(id=${footballersP.getId()})}" class="fas fa-chevron-circle-down" style="color:red; float:right;"></a></td>
+                                        </tr>
 
                                         <li class="list-group-item list-group-item-primary">Obrońcy</li>
                                         <tr th:each="footballersO: ${allFootballersO}">
                                             <li class="list-group-item list-group-item-light">
                                                 <td th:text="${footballersO.getImie()}"></td>
                                                 <td th:text="${footballersO.getNazwisko()}"></td>
-                                                <i class="fas fa-chevron-circle-down" style="float: right; color: darkred;"></i>                                            </li>
+                                                <td><a th:href="@{/addR(id=${footballersO.getId()})}" class="fas fa-chevron-circle-down" style="color:red; float:right;"></a></td>
+                                            </li>
                                         </tr>
 
                                         <li class="list-group-item list-group-item-info">Bramkarze</li>
@@ -84,15 +86,16 @@
                                             <li class="list-group-item list-group-item-light">
                                                 <td th:text="${footballersBR.getImie()}"></td>
                                                 <td th:text="${footballersBR.getNazwisko()}"></td>
-                                                <i class="fas fa-chevron-circle-down" style="float: right; color: darkred;"></i>                                        </tr>
-
+                                                <td><a th:href="@{/addR(id=${footballersBR.getId()})}" class="fas fa-chevron-circle-down" style="color:red; float:right;"></a></td>
+                                            </li>
+                                         </tr>
                                         <li class="list-group-item list-group-item-dark">Ławka rezerwowych</li>
                                         <tr th:each="footballersR: ${allFootballersR}">
                                             <li class="list-group-item list-group-item-light">
-                                                <td th:text="${footballersR.getPozycja()}"></td>
+                                                <b><td th:text="${footballersR.getPozycja()}"></td></b>
                                                 <td th:text="${footballersR.getImie()}"></td>
                                                 <td th:text="${footballersR.getNazwisko()}"></td>
-                                                <i class="fas fa-chevron-circle-up" style="float: right; color: darkgreen;" ></i>
+                                                <td><a th:href="@{/addT(id=${footballersR.getId()})}" class="fas fa-chevron-circle-up" style="color:green; float:right;"></a></td>
                                             </li>
                                         </tr>
                                     </ul>

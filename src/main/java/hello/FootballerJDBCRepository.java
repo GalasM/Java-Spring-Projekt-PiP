@@ -42,8 +42,8 @@ public class FootballerJDBCRepository {
         return jdbcTemplate.queryForObject("select * from footballer where id=?", new Object[] {id},new BeanPropertyRowMapper<Footballer>(Footballer.class));
     }
 
-    public int deleteById(String id) {
-        return jdbcTemplate.update("delete from footballer where id=?", id);
+    public String deleteById(String id) {
+        return String.valueOf(jdbcTemplate.update("delete from footballer where id=?", id));
     }
 
     void insert(Footballer footballer) {
@@ -72,5 +72,13 @@ public class FootballerJDBCRepository {
 
     List<Footballer> findR() {
         return jdbcTemplate.query("select * from footballer where status = 'R'", new FootballerRowMapper());
+    }
+
+    public String addToTeam(String id) {
+        return String.valueOf(jdbcTemplate.update("update footballer set status = 'S' where id=?", id));
+    }
+
+    public String addToReserve(String id) {
+        return String.valueOf(jdbcTemplate.update("update footballer set status = 'R' where id=?", id));
     }
 }

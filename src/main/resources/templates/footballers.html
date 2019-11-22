@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:spring="http://java.sun.com/xml/ns/javaee">
 <head>
     <title>Zawodnicy</title>
     <meta charset="utf-8">
@@ -71,7 +71,7 @@
                                     <td th:text="${footballers.getImie()}"></td>
                                     <td th:text="${footballers.getNazwisko()}"></td>
                                     <td th:text="${footballers.getPozycja()}"></td>
-                                    <td><button name="subject" type = "submit" class="btn btn-warning btn-sm" href = "${footballers.getId()}">Edytuj</button></td>
+                                    <td><a th:href="@{/delete(id=${footballers.getId()})}" class="btn btn-danger btn-sm">Usuń</a></td>
                                 </tr>
                                 </tbody>
                             </table>

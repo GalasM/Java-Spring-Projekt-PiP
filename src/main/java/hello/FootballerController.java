@@ -45,4 +45,12 @@ public class FootballerController {
         model.addAttribute("allFootballers", list);
         return "footballers";
     }
+
+    @GetMapping("/delete")
+    public RedirectView delete(@RequestParam(name="id")String id) {
+        uRepo.deleteById(id);
+        return new RedirectView("footballers");
+    }
 }
+
+
