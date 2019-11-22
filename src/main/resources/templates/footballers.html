@@ -55,6 +55,13 @@
                     <div class="row">
                             <h2 class="section-header">Lista zadowników</h2>
                         </div>
+
+                    <ul th:each="message : ${addedFootballer}">
+                        <li th:text="${message}" class="alert alert-success" />
+                    </ul>
+                    <ul th:each="message : ${removedFootballer}">
+                        <li th:text="${message}" class="alert alert-danger" />
+                    </ul>
                             <table class="table">
                                 <thead>
                                 <tr>

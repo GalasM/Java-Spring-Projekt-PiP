@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class FootballerController {
     }
 
     @PostMapping("/addFootballer")
-    public RedirectView greetingSubmit(@ModelAttribute ("footballer")Footballer footballer, BindingResult result, ModelMap model) {
+    public RedirectView greetingSubmit(@ModelAttribute ("footballer")Footballer footballer, RedirectAttributes attr, ModelMap model) {
         model.addAttribute("imie", footballer.getImie());
         model.addAttribute("nazwisko", footballer.getNazwisko());
         model.addAttribute("pozycja", footballer.getPozycja());
@@ -36,6 +37,7 @@ public class FootballerController {
         String id = UUID.randomUUID().toString();
         footballer.setId(id);
         uRepo.insert(footballer);
+        attr.addFlashAttribute("addedFootballer","Dodano piłkarza!");
         return new RedirectView("footballers");
     }
 
@@ -47,8 +49,9 @@ public class FootballerController {
     }
 
     @GetMapping("/delete")
-    public RedirectView delete(@RequestParam(name="id")String id) {
+    public RedirectView delete(@RequestParam(name="id")String id, RedirectAttributes attr) {
         uRepo.deleteById(id);
+        attr.addFlashAttribute("removedFootballer","Usunięto piłkarza!");
         return new RedirectView("footballers");
     }
 }
