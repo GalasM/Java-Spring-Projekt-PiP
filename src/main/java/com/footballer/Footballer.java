@@ -1,4 +1,4 @@
-package hello;
+package com.footballer;
 
 import java.io.Serializable;
 

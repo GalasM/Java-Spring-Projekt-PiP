@@ -1,4 +1,4 @@
-package hello;
+package com.news;
 
 
 import javax.persistence.Id;

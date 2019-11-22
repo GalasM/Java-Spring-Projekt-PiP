@@ -1,4 +1,4 @@
-package hello.calendar;
+package com.calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

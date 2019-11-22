@@ -1,4 +1,4 @@
-package hello;
+package com.news;
 
 public class NewsController {
 }

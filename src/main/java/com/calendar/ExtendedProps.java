@@ -1,4 +1,4 @@
-package hello.calendar;
+package com.calendar;
 
 import java.util.Arrays;
 import java.util.List;

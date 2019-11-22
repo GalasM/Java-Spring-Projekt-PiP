@@ -1,5 +1,7 @@
-package hello;
+package com.sklad;
 
+import com.footballer.Footballer;
+import com.footballer.FootballerJDBCRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

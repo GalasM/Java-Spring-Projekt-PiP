@@ -1,4 +1,4 @@
-package hello.calendar;
+package com.calendar;
 
 import java.io.IOException;
 import java.util.ArrayList;

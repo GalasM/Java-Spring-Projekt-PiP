@@ -1,5 +1,6 @@
-package hello;
+package com.footballer;
 
+import com.footballer.Footballer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,7 +35,7 @@ public class FootballerJDBCRepository {
         }
     }
 
-    List<Footballer> findAll() {
+    public List<Footballer> findAll() {
         return jdbcTemplate.query("select * from footballer", new FootballerRowMapper());
     }
 
@@ -54,23 +55,23 @@ public class FootballerJDBCRepository {
         return jdbcTemplate.update("update footballer " + " set name = ?, nazwisko = ?, pozycja = ?, status = ? " + " where id = ?", footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja(), footballer.getStatus(), footballer.getId());
     }
 
-    List<Footballer> findN() {
+    public List<Footballer> findN() {
         return jdbcTemplate.query("select * from footballer where pozycja = 'N' and status = 'S'", new FootballerRowMapper());
     }
 
-    List<Footballer> findP() {
+    public List<Footballer> findP() {
         return jdbcTemplate.query("select * from footballer where pozycja = 'P' and status = 'S'", new FootballerRowMapper());
     }
 
-    List<Footballer> findO() {
+    public List<Footballer> findO() {
         return jdbcTemplate.query("select * from footballer where pozycja = 'O' and status = 'S'", new FootballerRowMapper());
     }
 
-    List<Footballer> findBR() {
+    public List<Footballer> findBR() {
         return jdbcTemplate.query("select * from footballer where pozycja = 'BR' and status = 'S'", new FootballerRowMapper());
     }
 
-    List<Footballer> findR() {
+    public List<Footballer> findR() {
         return jdbcTemplate.query("select * from footballer where status = 'R'", new FootballerRowMapper());
     }
 
