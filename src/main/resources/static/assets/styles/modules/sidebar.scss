@@ -1,0 +1,28 @@
+@import 'modules/_mixins';
+@import 'modules/_variables';
+
+.sidebar {
+    max-width: 360px;
+    width: 100%;
+    background-color: $secondary-grey;
+    padding: 70px 30px;
+
+    ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+            list-style: none;
+            margin-bottom: 30px;
+            @include display-flex;
+            @include justify-content(center);
+
+            a {
+                color: $black;
+                font-size: 20px;
+                line-height: 26px;
+                text-align: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@import 'modules/_mixins';
+@import 'modules/_variables';
+
+.article {
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 26px;       
+
+    &__wrapper {
+        padding: 15px 30px;
+        width: 100%;
+        @include display-flex;
+        @include justify-content(space-between);
+        border-radius: 20px;
+        background-color: $white;
+        border: 1px solid $secondary-grey;
+    }
+
+    &__text {
+        width: 100%;
+        max-width: calc(100% - 170px);
+
+        p {
+            color: $black;
+        }
+    }
+
+    &__image-box {
+        max-width: 140px;
+        width: 100%;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
+
+        img {
+            width: auto;
+            height: auto;
+            max-width: 140px;
+            max-height: 140px;
+        }
+    }    
+}
