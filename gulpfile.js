@@ -67,7 +67,7 @@ gulp.task('watch', ['browserSync'], function(){
 
 // CLEAN
 
-gulp.task('clean', function(){
+gulp.task('clean', function() {
     del(['./src/main/resources/static/css/main.min.css', './src/main/resources/static/js/main.js']);
 });
 
@@ -76,7 +76,7 @@ gulp.task('clean', function(){
 gulp.task('browserSync', function(){
     browserSync({
         server: {
-            baseDir: "./src/main/resources/templates/"
+            baseDir: "./"
         }
     });
 });
