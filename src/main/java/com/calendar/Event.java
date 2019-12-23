@@ -65,7 +65,6 @@ public class Event extends Object {
                     default:
                         setColor("pink");
                 }
-
         } );
         ExtendedProps = extenedProps;
     }

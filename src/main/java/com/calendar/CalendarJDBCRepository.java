@@ -38,11 +38,11 @@ public class CalendarJDBCRepository {
     }
 
     public Event findById(String id) {
-        return jdbcTemplate.queryForObject("select * from event where id=?", new Object[] {id},new BeanPropertyRowMapper<Event>(Event.class));
+        return jdbcTemplate.queryForObject("select * from event where id=?", new Object[] {id}, new EventRowMapper());
     }
 
-    public int deleteById(String id) {
-        return jdbcTemplate.update("delete from event where id=?", id);
+    void deleteById(String id) {
+        jdbcTemplate.update("delete from event where id=?", id);
     }
 
     void insert(Event event) {

@@ -33,24 +33,6 @@ public class RestWebController {
                 x.setExtendedProps(list);
             });
             List<Event> events = new ArrayList<>(ev);
-            Event event = new Event();
-            event.setTitle("first event");
-            event.setStart("2019-11-01");
-            ExtendedProps type = new ExtendedProps("type","training");
-            List<ExtendedProps> list = type.toList();
-            event.setExtendedProps(list);
-
-            events.add(event);
-
-            event = new Event();
-            event.setTitle("second event");
-            event.setStart("2019-11-11");
-            event.setEnd("2019-11-13");
-            type = new ExtendedProps("type","match");
-            list = type.toList();
-            event.setExtendedProps(list);
-
-            events.add(event);
 
             ObjectMapper mapper = new ObjectMapper();
             jsonMsg =  mapper.writerWithDefaultPrettyPrinter().writeValueAsString(events);

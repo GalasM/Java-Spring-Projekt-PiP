@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         height: 'auto',
         eventSources: [
             {
-                url: '/api/event/all', // use the `url` property
+                url: '/api/event/all',
             }
         ],
         editable: true,

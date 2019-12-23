@@ -22,7 +22,7 @@ create table news
 
 create table event
 (
-  id varchar(255) not null,
+  id varchar(255) not null primary key,
   title varchar(255) not null,
   start varchar(255) not null,
   end varchar(255),
@@ -35,4 +35,14 @@ create table extendProps
   name varchar(255),
   value varchar(255),
   eventId varchar(255)
+);
+
+create table trainingBefore
+(
+  id varchar(255) not null,
+  idMatch varchar(255),
+  constraint fk
+  foreign key(idMatch)
+  references event(id)
+  on delete cascade
 );

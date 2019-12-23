@@ -27,7 +27,10 @@ values('13', 'Adam', 'Piotrowski', 'O', 'R');
 insert into footballer
 values('14', 'Tymon', 'Wierzbicki', 'BR', 'S');
 
-
+insert into event
+values('1', 'Event 1', '2019-11-11', '2019-11-12', 'match');
+insert into event
+values('2', 'Event 2', '2019-11-20', '2019-11-23', 'training');
 
 insert into news
 values(1, 'Tytuł', 'Treść');
