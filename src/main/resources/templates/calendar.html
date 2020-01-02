@@ -16,6 +16,13 @@
     <script src='/webjars/fullcalendar/packages/core/main.js'></script>
     <script src='/webjars/fullcalendar/packages/daygrid/main.js'></script>
     <script src='/webjars/fullcalendar/packages/list/main.js'></script>
+
+
+    <script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+
+
     <!-- Custom styles -->
     <link rel="stylesheet" href="../static/css/main.min.css" th:href=@{/css/main.min.css}>
     <!-- Custom scripts -->
@@ -83,7 +90,7 @@
                                             </div>
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                <form action = "addEvent"  method="post">
+                                                <form action = "addEvent"  method="post" id="form1">
                                                     <div class="form-group">
                                                         <label for="title">Tytuł wydarzenia:</label>
                                                         <input type="text" class="form-control" id="title" placeholder="Podaj tytuł" name="title" required>
@@ -103,12 +110,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="type">Rodzaj wydarzenia:</label>
-                                                        <select class="custom-select" id = "type" name="type" required>
+                                                        <select class="custom-select" id = "type" name="type" onchange="showInfo()" required>
                                                             <option value="">Rodzaj wydarzenia</option>
                                                             <option value="match">Mecz</option>
                                                             <option value="training">Trening</option>
                                                         </select>
                                                         <div class="invalid-feedback">Proszę wypełnić pole</div>
+                                                    </div>
+                                                    <div id="emptyField" class="form-group" style="display:none">
+                                                        <label for="end">Data treningu przed meczem</label>
+                                                        <input type="date" class="form-control" id="trainingDate" placeholder="Podaj date" name="trainingDate" >
+                                                        <br>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Dodaj</button>
                                                 </form>

@@ -10,6 +10,7 @@ public class Event extends Object {
     private List<ExtendedProps> ExtendedProps;
     private String type;
     private String color;
+    private String trainingDate;
 
     public String getId() {
         return id;
@@ -44,6 +45,14 @@ public class Event extends Object {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setTrainingDate(String trainingDate) {
+        this.trainingDate = trainingDate;
+    }
+
+    public String getTrainingDate() {
+        return trainingDate;
     }
 
     public List<ExtendedProps> getExtendedProps() {

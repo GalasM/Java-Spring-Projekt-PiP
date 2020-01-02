@@ -45,3 +45,42 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 });
 
+function showInfo(){
+    let type = document.getElementById("type").value;
+    var x =document.getElementById("emptyField");
+    var x1 = document.getElementById("trainingDate");
+    if(type==="match"){
+        x.style.display = "block";
+        x1.required= true;
+    }
+    else{
+        x.style.display = "none";
+        x1.required= false;
+    }
+}
+
+$(document).ready(function() {
+    $('#form1').bootstrapValidator({
+        fields: {
+            trainingDate: {
+                validators: {
+                    date: {
+                        format: 'YYYY-MM-DD'
+                    },
+                    callback: {
+                        message: 'Trening musi się odbyć przed meczem!',
+                        callback: function(value, validator) {
+                            var match = document.getElementById('start');
+                            var m = new moment(value, 'YYYY-MM-DD', true);
+                            if (!m.isValid()) {
+                                return false;
+                            }
+                            return m.isAfter('2000-01-01') && m.isBefore(match.value);
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+
