@@ -27,6 +27,58 @@ values('13', 'Adam', 'Piotrowski', 'O', 'R');
 insert into footballer
 values('14', 'Tymon', 'Wierzbicki', 'BR', 'S');
 
+insert into team
+values ('1', 'Pierwszy Skład', '3-4-3');
+insert into team
+values ('2', 'Drugi Skład', '4-4-2');
+
+insert into teamFootballer
+values ('1', '1','1','S');
+insert into teamFootballer
+values ('2', '1','2','S');
+insert into teamFootballer
+values ('3', '1','3','S');
+insert into teamFootballer
+values ('4', '1','4','S');
+insert into teamFootballer
+values ('5', '1','5','S');
+insert into teamFootballer
+values ('6', '1','6','S');
+insert into teamFootballer
+values ('7', '1','7','S');
+insert into teamFootballer
+values ('8', '1','8','S');
+insert into teamFootballer
+values ('9', '1','9','S');
+insert into teamFootballer
+values ('10', '1','10','S');
+insert into teamFootballer
+values ('11', '1','11','S');
+insert into teamFootballer
+values ('23', '1','12','R');
+insert into teamFootballer
+values ('12', '2','12','S');
+insert into teamFootballer
+values ('13', '2','13','S');
+insert into teamFootballer
+values ('14', '2','14','S');
+insert into teamFootballer
+values ('15', '2','9','S');
+insert into teamFootballer
+values ('16', '2','7','S');
+insert into teamFootballer
+values ('17', '2','1','S');
+insert into teamFootballer
+values ('18', '2','2','S');
+insert into teamFootballer
+values ('19', '2','3','S');
+insert into teamFootballer
+values ('20', '2','4','S');
+insert into teamFootballer
+values ('21', '2','5','S');
+insert into teamFootballer
+values ('22', '2','6','S');
+
 insert into event
 values('1', 'Event 1', '2019-11-11', '2019-11-12', 'match');
 insert into event

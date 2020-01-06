@@ -75,7 +75,7 @@ $(document).ready(function() {
                             if (!m.isValid()) {
                                 return false;
                             }
-                            return m.isAfter('2000-01-01') && m.isBefore(match.value);
+                            return m.isBefore(match.value);
                         }
                     }
                 }
@@ -83,4 +83,9 @@ $(document).ready(function() {
         }
     });
 });
+
+function redirect1(goto){
+    var x = "/sklad?id="+goto;
+    window.location = x;
+}
 

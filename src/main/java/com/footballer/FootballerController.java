@@ -1,7 +1,7 @@
 package com.footballer;
 
-import com.footballer.Footballer;
-import com.footballer.FootballerJDBCRepository;
+
+import com.sklad.SkladJDBCRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +17,12 @@ import java.util.UUID;
 public class FootballerController {
 
     private final FootballerJDBCRepository uRepo;
+    private final SkladJDBCRepository sRepo;
 
     @Autowired
-    public FootballerController(FootballerJDBCRepository uRepo) {
+    public FootballerController(FootballerJDBCRepository uRepo, SkladJDBCRepository sRepo) {
         this.uRepo = uRepo;
+        this.sRepo = sRepo;
     }
 
     @GetMapping("/formFootballer")
@@ -38,6 +40,8 @@ public class FootballerController {
         String id = UUID.randomUUID().toString();
         footballer.setId(id);
         uRepo.insert(footballer);
+        String id2 = UUID.randomUUID().toString();
+        sRepo.insertFootballer(id2,null,id,null);
         attr.addFlashAttribute("addedFootballer","Dodano piłkarza!");
         return new RedirectView("footballers");
     }

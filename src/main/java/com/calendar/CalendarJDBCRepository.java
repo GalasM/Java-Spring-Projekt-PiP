@@ -36,6 +36,10 @@ public class CalendarJDBCRepository {
         return jdbcTemplate.query("select * from event", new CalendarJDBCRepository.EventRowMapper());
     }
 
+    List<Event> findAllMatches() {
+        return jdbcTemplate.query("select * from event where type='match'", new CalendarJDBCRepository.EventRowMapper());
+    }
+
     public Event findById(String id) {
         return jdbcTemplate.queryForObject("select * from event where id=?", new Object[] {id}, new EventRowMapper());
     }

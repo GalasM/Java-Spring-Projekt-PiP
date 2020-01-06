@@ -41,4 +41,18 @@ public class RestWebController {
         }
         return jsonMsg;
     }
+
+    @GetMapping(value = "/matches")
+    public String getMatches() {
+        String jsonMsg = null;
+        try {
+            List<Event> ev = Repo.findAllMatches();
+
+            ObjectMapper mapper = new ObjectMapper();
+            jsonMsg =  mapper.writerWithDefaultPrettyPrinter().writeValueAsString(ev);
+        } catch (IOException ioex) {
+            System.out.println(ioex.getMessage());
+        }
+        return jsonMsg;
+    }
 }

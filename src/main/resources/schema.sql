@@ -11,6 +11,25 @@ create table footballer
    primary key(id)
 );
 
+create table team
+(
+  id varchar(255) not null,
+  name varchar(255) not null,
+  formation varchar(5),
+  primary key(id)
+);
+
+create table teamFootballer
+(
+  id varchar(255) not null,
+  idTeam varchar(255) ,
+  idFootballer varchar(255) not null,
+  status varchar(2),
+  primary key(id),
+  constraint fkTeam foreign key(idTeam) references team(id) on delete cascade,
+  constraint fkFootballer foreign key(idFootballer) references footballer(id) on delete cascade
+);
+
 
 create table news
 (
@@ -41,8 +60,5 @@ create table trainingBefore
 (
   id varchar(255) not null,
   idMatch varchar(255),
-  constraint fk
-  foreign key(idMatch)
-  references event(id)
-  on delete cascade
+  constraint fk foreign key(idMatch) references event(id) on delete cascade
 );
