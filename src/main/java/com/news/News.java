@@ -5,17 +5,17 @@ import javax.persistence.Id;
 
 public class News {
     @Id
-    private int aid;
+    private String id;
     private String tytul;
     private String tresc;
 
 
-    public int getAid() {
-        return aid;
+    public String getAid() {
+        return id;
     }
 
-    public void setAid(int aid) {
-        this.aid = aid;
+    public void setAid(String id) {
+        this.id = id;
     }
 
     public String getTytul() {
@@ -37,6 +37,6 @@ public class News {
 
     @Override
     public String toString() {
-        return "News [aid = " + aid + ", tytul = " + tytul + ", tresc = " + tresc + "]";
+        return "News [aid = " + id + ", tytul = " + tytul + ", tresc = " + tresc + "]";
     }
 }

@@ -33,9 +33,9 @@ create table teamFootballer
 
 create table news
 (
-  id integer not null,
-  tytul varchar(255) not null,
-  tresc varchar(255) not null,
+  id varchar(255) not null,
+  tytul varchar(255),
+  tresc varchar(255),
   primary key(id)
 );
 

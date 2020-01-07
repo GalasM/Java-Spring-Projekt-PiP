@@ -15,9 +15,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- Custom styles -->
-    <link rel="stylesheet" href="./css/main.min.css" th:href=@{/css/main.min.css}>
+    <link rel="stylesheet" href="css/main.min.css" th:href=@{/css/main.min.css}>
     <!-- Custom scripts -->
-    <script src="./js/main.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
     <header class="header">
@@ -49,11 +49,11 @@
                 <aside class="sidebar">
                     <ul class="container">
                         <li><a href="/">Strona&nbsp;główna</a></li>
+                        <li><a href="/news">Aktualności</a></li>
                         <li><a href="/footballers">Zawodnicy</a></li>
                         <li><a href="/calendar">Kalendarz</a></li>
                         <li><a href="/sklad">Skład</a></li>
                         <li><a href="#">Statystyki</a></li>
-                        <li><a href="#">Finanse</a></li>
                     </ul>
                 </aside>
                 <div class="board">
@@ -64,20 +64,7 @@
                         <article class="article">
                             <div class="article__wrapper">
                                 <div class="article__text">
-                                    <p>Od początku widziałem, że młody kibic biegnący w moją stronę, uśmiechał się. Miałem już takie sytuacje - powiedział Robert Lewandowski, odnosząc się do końcówki spotkania z Izraelem (2:1), kiedy na boisko wtargnęli kibice.</p>
-                                </div>
-                                <div class="article__image-box">
-                                    <img src="https://www.flashscore.pl/res/image/data/EB7qLzHG-4dx0soOA.png" alt="Zdjęcie artykułu">
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article">
-                            <div class="article__wrapper">
-                                <div class="article__text">
                                     <p>Selekcjoner reprezentacji Polski, Jerzy Brzęczek, podał wyjściowy skład swojego zespołu na sobotni mecz 9. kolejki grupy G eliminacji Euro 2020 z Izraelem.<br/> <strong>Polska:</strong> Wojciech Szczęsny - Tomasz Kędziora, Kamil Glik, Jan Bednarek, Arkadiusz Reca - Grzegorz Krychowiak, Krystian Bielik - Sebastian Szymański, Piotr Zieliński, Przemysław Frankowski - Krzysztof Piątek.</p>
-                                </div>
-                                <div class="article__image-box">
-                                    <img src="https://wmeritum.pl/wp-content/uploads/2018/03/koszulki-1.jpg" alt="Zdjęcie artykułu">
                                 </div>
                             </div>
                         </article>
@@ -86,9 +73,6 @@
                                 <div class="article__text">
                                     <p>Zespół Lecha Poznań do końca 2019 roku rozegra przy Bułgarskiej jeszcze tylko 3 spotkania w tym 2 mecze zgodowe w grudniu. Zanim Kolejorz podejmie na Stadionie Miejskim ekipę Łódzkiego Klubu Sportowego i drużynę Arki Gdynia już w piątek, 22 listopada, o godzinie 20:30 na nasz obiekt zawita zespół aktualnego Mistrza Polski, Piasta Gliwice.</p>
                                 </div>
-                                <div class="article__image-box">
-                                    <img src="https://www.flashscore.pl/res/image/data/nHGXTKAr-WYr1gV4A.png" alt="Zdjęcie artykułu">
-                                </div>
                             </div>
                         </article>
                     </div>
@@ -96,6 +80,9 @@
             </div>
         </div>
     </div>
+
+
+
     <footer id="footer" class="footer">
         <div class="container footer__container">
             <div class="row row--space-between">
