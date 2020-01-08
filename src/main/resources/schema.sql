@@ -36,6 +36,7 @@ create table news
   id varchar(255) not null,
   tytul varchar(255),
   tresc varchar(255),
+  data varchar(255),
   primary key(id)
 );
 

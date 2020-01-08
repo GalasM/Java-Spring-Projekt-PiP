@@ -7,7 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class CalendarJDBCRepository {
@@ -49,7 +54,12 @@ public class CalendarJDBCRepository {
     }
 
     void insert(Event event) {
-        jdbcTemplate.update("insert into event (id, title, start, end, type) " + "values(?, ?, ?, ?, ?)", event.getId(), event.getTitle(), event.getStart(), event.getEnd(), event.getType());
-    }
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String strDate = dateFormat.format(date);
+        String id = UUID.randomUUID().toString();
 
+        jdbcTemplate.update("insert into event (id, title, start, end, type) " + "values(?, ?, ?, ?, ?)", event.getId(), event.getTitle(), event.getStart(), event.getEnd(), event.getType());
+        jdbcTemplate.update("insert into news(id, tytul,tresc,data)" + " values(?, 'Do kalendarza dodano nowy wpis!', ?,?)", id, event.getTitle(), strDate);
+    }
 }

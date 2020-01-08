@@ -25,17 +25,17 @@ public class NewsJDBCRepository {
             news.setAid(rs.getString("id"));
             news.setTytul(rs.getString("tytul"));
             news.setTresc(rs.getString(("tresc")));
+            news.setData(rs.getString(("data")));
             return news;
         }
     }
 
-
     public void insert(News news) {
-        jdbcTemplate.update("insert into news(id,tytul,tresc)" + "values(?, ?, ?)", news.getAid(), news.getTytul(), news.getTresc());
+        jdbcTemplate.update("insert into news(id,tytul,tresc,data)" + "values(?, ?, ?, ?)", news.getAid(), news.getTytul(), news.getTresc(), news.getData());
     }
 
     public List<News> findAll() {
-        return jdbcTemplate.query("select * from news order by id desc", new NewsRowMapper());
+        return jdbcTemplate.query("select * from news order by data desc", new NewsRowMapper());
     }
 
 }

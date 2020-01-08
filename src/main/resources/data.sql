@@ -85,4 +85,4 @@ insert into event
 values('2', 'Event 2', '2019-11-20', '2019-11-23', 'training');
 
 insert into news
-values(1, 'Przykładowy temat', 'Przykładowa treść, przykładowa treść, przykładowa treść.');
+values(1, 'Przykładowy temat', 'Przykładowa treść, przykładowa treść, przykładowa treść.', '08-01-2020 19:51:32');

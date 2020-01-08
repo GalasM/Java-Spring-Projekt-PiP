@@ -8,6 +8,7 @@ public class News {
     private String id;
     private String tytul;
     private String tresc;
+    private String data;
 
 
     public String getAid() {
@@ -32,6 +33,14 @@ public class News {
 
     public void setTresc(String tresc) {
         this.tresc = tresc;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
 
