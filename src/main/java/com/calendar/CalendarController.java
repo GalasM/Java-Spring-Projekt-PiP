@@ -1,13 +1,19 @@
 package com.calendar;
 
+import com.footballer.Footballer;
+import com.footballer.FootballerJDBCRepository;
+import com.sklad.Sklad;
+import com.sklad.SkladJDBCRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -15,17 +21,26 @@ public class CalendarController {
 
     private final CalendarJDBCRepository Repo;
     private final TrainingJDBCRepository RepoTraining;
+    private final SkladJDBCRepository sRepo;
+    private final FootballerJDBCRepository fRepo;
 
     @Autowired
-    public CalendarController(CalendarJDBCRepository Repo, TrainingJDBCRepository repoTraining) {
+    public CalendarController(CalendarJDBCRepository Repo, TrainingJDBCRepository repoTraining, SkladJDBCRepository sRepo, FootballerJDBCRepository fRepo) {
         this.Repo = Repo;
-        RepoTraining = repoTraining;
+        this.RepoTraining = repoTraining;
+        this.sRepo = sRepo;
+        this.fRepo = fRepo;
     }
 
     @GetMapping("/calendar")
-    public String calendar() {
+    public String calendar(Model model) {
+        List<Sklad> allTeams = sRepo.findAllTeams();
+        List<Footballer> allFootballers = fRepo.findAll();
+        model.addAttribute("allTeams",allTeams);
+        model.addAttribute("allFootballers",allFootballers);
         return "calendar";
     }
+
 
     @PostMapping("/addEvent")
     public RedirectView addEvent(@ModelAttribute("event") Event event, RedirectAttributes attr) {
@@ -39,6 +54,7 @@ public class CalendarController {
             eventT.setTitle("Trening przed "+ event.getTitle());
             eventT.setType("training");
             eventT.setStart(event.getTrainingDate());
+            eventT.setSklad("0");
             Repo.insert(event);
             RepoTraining.insert(training);
             Repo.insert(eventT);
@@ -47,9 +63,9 @@ public class CalendarController {
             return new RedirectView("calendar");
         }
         else {
-        String id = UUID.randomUUID().toString();
-        event.setId(id);
-        Repo.insert(event);
+            String id = UUID.randomUUID().toString();
+            event.setId(id);
+            Repo.insert(event);
             attr.addFlashAttribute("added", "Dodano wydarzenie!");
             return new RedirectView("calendar");
         }
@@ -59,11 +75,11 @@ public class CalendarController {
     public RedirectView removeEvent(@ModelAttribute("event") Event event, RedirectAttributes attr) {
         Event event1 = Repo.findById(event.getId());
         if(event1.getType().equals("match")){
-        TrainingBefore x = RepoTraining.getTrainingById(event.getId());
-        Repo.deleteById(x.getId());
-        Repo.deleteById(event.getId());
-        attr.addFlashAttribute("removed","Usunięto mecz oraz zaplanowany trening!");
-        return new RedirectView("calendar");
+            TrainingBefore x = RepoTraining.getTrainingById(event.getId());
+            Repo.deleteById(x.getId());
+            Repo.deleteById(event.getId());
+            attr.addFlashAttribute("removed","Usunięto mecz oraz zaplanowany trening!");
+            return new RedirectView("calendar");
         }
         else {
             Repo.deleteById(event.getId());

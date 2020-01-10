@@ -36,7 +36,6 @@ public class FootballerController {
         model.addAttribute("imie", footballer.getImie());
         model.addAttribute("nazwisko", footballer.getNazwisko());
         model.addAttribute("pozycja", footballer.getPozycja());
-        model.addAttribute("status", footballer.getStatus());
         String id = UUID.randomUUID().toString();
         footballer.setId(id);
         uRepo.insert(footballer);

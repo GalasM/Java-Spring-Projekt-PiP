@@ -7,7 +7,6 @@ create table footballer
    imie varchar(255) not null,
    nazwisko varchar(255) not null,
    pozycja varchar(255) not null,
-   status varchar(255) not null,
    primary key(id)
 );
 
@@ -46,7 +45,8 @@ create table event
   title varchar(255) not null,
   start varchar(255) not null,
   end varchar(255),
-  type varchar(255)
+  type varchar(255),
+  sklad varchar(255)
 );
 
 create table extendProps

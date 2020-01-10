@@ -15,11 +15,23 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         allDayText: '',
         height: 'auto',
-        eventSources: [
+        events:
             {
-                url: '/api/event/all',
-            }
-        ],
+                url: '/api/event/all1',
+                extraParams:{
+                    id: localStorage.getItem("player")
+                }
+            } /*function() { {
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open( "GET", "/api/event/dupa", false ); // false for synchronous request
+                    xmlHttp.send( null );
+                }
+                    return {
+                        id: xmlHttp.responseText
+                    };
+                }
+                }*/
+        ,
         editable: true,
         eventClick: function(info) {
             var eventObj = info.event;
@@ -59,6 +71,7 @@ function showInfo(){
     }
 }
 
+
 $(document).ready(function() {
     $('#form1').bootstrapValidator({
         fields: {
@@ -82,10 +95,18 @@ $(document).ready(function() {
             }
         }
     });
+    $('#allFootballers').on('change', function() {
+        var x = $("#allFootballers option:selected").val()
+        localStorage.setItem("player",x);
+        window.location="/calendar"
+    })
 });
 
-function redirect1(goto){
-    var x = "/sklad?id="+goto;
-    window.location = x;
+$(document).ready(function() {
+    loadStorage();
+});
+
+function loadStorage() {
+    var x = localStorage.getItem("player");
 }
 

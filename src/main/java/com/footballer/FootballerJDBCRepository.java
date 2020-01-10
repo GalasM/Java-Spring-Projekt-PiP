@@ -29,7 +29,6 @@ public class FootballerJDBCRepository {
             footballer.setImie(rs.getString("imie"));
             footballer.setNazwisko(rs.getString(("nazwisko")));
             footballer.setPozycja(rs.getString("pozycja"));
-            footballer.setStatus(rs.getString("status"));
             return footballer;
         }
     }
@@ -47,7 +46,7 @@ public class FootballerJDBCRepository {
     }
 
     void insert(Footballer footballer) {
-        jdbcTemplate.update("insert into footballer (id, imie, nazwisko, pozycja, status) " + "values(?, ?, ?, ?, ?)", footballer.getId(), footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja(), footballer.getStatus());
+        jdbcTemplate.update("insert into footballer (id, imie, nazwisko, pozycja) " + "values(?, ?, ?, ?)", footballer.getId(), footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja());
     }
 
     public int update(Footballer footballer) {
@@ -55,26 +54,26 @@ public class FootballerJDBCRepository {
     }
 
     public List<Footballer> findN(String id) {
-        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja, footballer.status from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=? and footballer.pozycja='N' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
+        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=? and footballer.pozycja='N' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
     }
 
     public List<Footballer> findP(String id) {
-        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja, footballer.status from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=?and footballer.pozycja='P' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
+        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=?and footballer.pozycja='P' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
     }
 
     public List<Footballer> findO(String id) {
-        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja, footballer.status from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=?and footballer.pozycja='O' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
+        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=?and footballer.pozycja='O' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
     }
 
     public List<Footballer> findBR(String id) {
-        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja, footballer.status from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=?and footballer.pozycja='BR' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
+        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=?and footballer.pozycja='BR' and teamFootballer.status='S'",new Object[]{id}, new FootballerRowMapper());
     }
 
     public List<Footballer> findR(String id) {
-        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja, footballer.status from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=? and teamFootballer.status='R'",new Object[]{id}, new FootballerRowMapper());
+        return jdbcTemplate.query("select footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja from footballer inner join teamFootballer on teamfootballer.idFootballer=footballer.id where teamfootballer.idteam=? and teamFootballer.status='R'",new Object[]{id}, new FootballerRowMapper());
     }
 
     public List<Footballer> findAllWithoutOne(String id) {
-        return jdbcTemplate.query("select distinct footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja, footballer.status from footballer inner join teamfootballer on teamfootballer.idfootballer=footballer.id where teamfootballer.idteam is not ? and footballer.id not in (select idfootballer from teamfootballer where idteam is ?)",new Object[]{id,id}, new FootballerRowMapper());
+        return jdbcTemplate.query("select distinct footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja from footballer inner join teamfootballer on teamfootballer.idfootballer=footballer.id where teamfootballer.idteam is not ? and footballer.id not in (select idfootballer from teamfootballer where idteam is ?)",new Object[]{id,id}, new FootballerRowMapper());
     }
 }

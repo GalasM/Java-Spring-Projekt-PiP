@@ -80,6 +80,11 @@
                         </ul>
                         <div class="row row--vertical-center">
                             <div class="container">
+                                <select id='allFootballers' name='allFootballers' class="custom-select" >
+                                    <option th:id="0" th:value="0" th:utext="Wybierz" selected></option>
+                                    <option  th:each="allFootballers: ${allFootballers}" th:id="${allFootballers.getId()}" th:value="${allFootballers.getId()}" th:utext="${allFootballers.getImie()} + ' ' + ${allFootballers.getNazwisko()}" ></option>
+                                    </th:each>
+                                </select>
                                 <button class="button button--white-background button--black-text button--black-border" data-toggle="modal" data-target="#myModal">Dodaj wydarzenie</button>
                                 <div class="modal" id="myModal">
                                     <div class="modal-dialog">
@@ -121,6 +126,12 @@
                                                     <div id="emptyField" class="form-group" style="display:none">
                                                         <label for="end">Data treningu przed meczem</label>
                                                         <input type="date" class="form-control" id="trainingDate" placeholder="Podaj date" name="trainingDate" >
+                                                        <label for="end">Skład</label>
+                                                        <select id='sklad' name='sklad' class="custom-select" >
+                                                            <option th:id="0" th:value="0" th:utext="Wybierz"></option>
+                                                            <option  th:each="allTeams: ${allTeams}" th:id="${allTeams.getId()}" th:value="${allTeams.getId()}" th:utext="${allTeams.getName()}"></option>
+                                                            </th:each>
+                                                        </select>
                                                         <br>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Dodaj</button>

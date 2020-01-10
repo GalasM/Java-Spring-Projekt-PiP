@@ -59,7 +59,14 @@ public class CalendarJDBCRepository {
         String strDate = dateFormat.format(date);
         String id = UUID.randomUUID().toString();
 
-        jdbcTemplate.update("insert into event (id, title, start, end, type) " + "values(?, ?, ?, ?, ?)", event.getId(), event.getTitle(), event.getStart(), event.getEnd(), event.getType());
+
+        jdbcTemplate.update("insert into event (id, title, start, end, type, sklad) " + "values(?, ?, ?, ?, ?, ?)", event.getId(), event.getTitle(), event.getStart(), event.getEnd(), event.getType(),event.getSklad());
         jdbcTemplate.update("insert into news(id, tytul,tresc,data)" + " values(?, 'Do kalendarza dodano nowy wpis!', ?,?)", id, event.getTitle(), strDate);
+
     }
+
+    List<Event> eventsForFootballer(String id){
+        return jdbcTemplate.query("select e.id,e.title,e.start,e.end,e.type,e.sklad from event e inner join teamfootballer tf on tf.idteam=e.sklad where tf.idfootballer= ? union select e.id,e.title,e.start,e.end,e.type,e.sklad from event e where e.sklad = '0'", new Object[]{id},new EventRowMapper());
+    }
+
 }

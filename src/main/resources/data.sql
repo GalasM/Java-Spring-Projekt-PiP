@@ -1,31 +1,31 @@
 insert into footballer
-values('1','Marcel', 'Tomczak', 'N', 'S');
+values('1','Marcel', 'Tomczak', 'N');
 insert into footballer
-values('2', 'Jakub', 'Łuczak', 'P', 'S');
+values('2', 'Jakub', 'Łuczak', 'P');
 insert into footballer
-values('3', 'Mateusz', 'Matusiak', 'N', 'S');
+values('3', 'Mateusz', 'Matusiak', 'N');
 insert into footballer
-values('4', 'Oliwier', 'Kozłowski', 'O', 'S');
+values('4', 'Oliwier', 'Kozłowski', 'O');
 insert into footballer
-values('5', 'Paweł', 'Janik', 'O', 'S');
+values('5', 'Paweł', 'Janik', 'O');
 insert into footballer
-values('6', 'Karol', 'Bera', 'P', 'S');
+values('6', 'Karol', 'Bera', 'P');
 insert into footballer
-values('7', 'Kamil', 'Marszałek', 'O', 'S');
+values('7', 'Kamil', 'Marszałek', 'O');
 insert into footballer
-values('8', 'Michał', 'Stępień', 'N', 'S');
+values('8', 'Michał', 'Stępień', 'N');
 insert into footballer
-values('9', 'Sebastian', 'Gil', 'P', 'S');
+values('9', 'Sebastian', 'Gil', 'P');
 insert into footballer
-values('10', 'Michał', 'Nowak', 'O', 'R');
+values('10', 'Michał', 'Nowak', 'O');
 insert into footballer
-values('11', 'Bartosz', 'Kowalski', 'BR', 'R');
+values('11', 'Bartosz', 'Kowalski', 'BR');
 insert into footballer
-values('12', 'Krzysztof', 'Lipa', 'P', 'S');
+values('12', 'Krzysztof', 'Lipa', 'P');
 insert into footballer
-values('13', 'Adam', 'Piotrowski', 'O', 'R');
+values('13', 'Adam', 'Piotrowski', 'O');
 insert into footballer
-values('14', 'Tymon', 'Wierzbicki', 'BR', 'S');
+values('14', 'Tymon', 'Wierzbicki', 'BR');
 
 insert into team
 values ('1', 'Pierwszy Skład', '3-4-3');
@@ -80,9 +80,9 @@ insert into teamFootballer
 values ('22', '2','6','S');
 
 insert into event
-values('1', 'Event 1', '2019-11-11', '2019-11-12', 'match');
+values('1', 'Event 1', '2020-01-11', '2019-11-12', 'match', '1');
 insert into event
-values('2', 'Event 2', '2019-11-20', '2019-11-23', 'training');
+values('2', 'Event 2', '2020-01-20', '2019-11-23', 'training', '0');
 
 insert into news
 values(1, 'Przykładowy temat', 'Przykładowa treść, przykładowa treść, przykładowa treść.', '08-01-2020 19:51:32');

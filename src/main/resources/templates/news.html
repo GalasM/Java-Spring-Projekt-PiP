@@ -15,9 +15,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- Custom styles -->
-    <link rel="stylesheet" href="css/main.min.css" th:href=@{/css/main.min.css}>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="../static/css/main.min.css" th:href=@{/css/main.min.css}>
     <!-- Custom scripts -->
-    <script src="js/main.js"></script>
+    <script src="../static/js/main.js"></script>
 </head>
 <body>
 <header class="header">
@@ -62,30 +63,28 @@
                         <h2 class="section-header">Najnowsze artykuły</h2>
                     </div>
                     <ul th:each="message : ${addedNews}">
-                        <li th:text="${message}" class="alert alert-success" />
+                        <li th:text="${message}" class="alert alert-success"></li>
                     </ul>
 
                     <tr th:each="news: ${allNews}">
-                    <article class="article">
-                        <div class="article__wrapper">
-                            <div class="article__text">
-                                <p>
-                                    <h4><a th:text="${news.getTytul()}"></a></h4> <br>
+                        <article class="article">
+                            <div class="article__wrapper">
+                                <div class="article__text">
+                                    <h4><a th:text="${news.getTytul()}"></a></h4><br>
                                     <h6><a th:text="${news.getData()}"></a></h6><br>
                                     <h6><a th:text="${news.getTresc()}"></a></h6>
-                                </p>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-
+                        </article>
                     </tr>
+                    <button type="button" class="button button--white-background button--black-text button--black-border" data-toggle="modal" data-target="#myModal">
+                        Dodaj news
+                    </button>
                 </div>
             </div>
         </div>
 
-        <button type="button" class="button button--white-background button--black-text button--black-border" data-toggle="modal" data-target="#myModal">
-            Dodaj news
-        </button>
+
 
         <!-- The Modal -->
         <div class="modal" id="myModal">
