@@ -1,15 +1,16 @@
-@import 'modules/_mixins';
-@import 'modules/_variables';
+@import './_mixins';
+@import './_variables';
 
 .page {
     width: 100%;
-    position: relative;    
+   // position: relative;
 
     &__container {
         margin: 0 auto;
         max-width: 1440px;
         width: 100%;
-        position: relative;
+        height: 83.6vh;
+       // position: relative;
 
         &:after, &:before {
             content: "";
