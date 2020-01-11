@@ -55,7 +55,6 @@ public class CalendarController {
             eventT.setType("training");
             eventT.setStart(event.getTrainingDate());
             eventT.setSklad("0");
-            System.out.println(event.toString());
             Repo.insert(event);
             RepoTraining.insert(training);
             Repo.insert(eventT);
