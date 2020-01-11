@@ -22,11 +22,11 @@ public class Event extends Object {
         this.id = id;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -58,7 +58,7 @@ public class Event extends Object {
         this.trainingDate = trainingDate;
     }
 
-    String getTrainingDate() {
+    public String getTrainingDate() {
         return trainingDate;
     }
 
@@ -99,5 +99,20 @@ public class Event extends Object {
 
     public void setSklad(String sklad) {
         this.sklad = sklad;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", ExtendedProps=" + ExtendedProps +
+                ", type='" + type + '\'' +
+                ", color='" + color + '\'' +
+                ", trainingDate='" + trainingDate + '\'' +
+                ", sklad='" + sklad + '\'' +
+                '}';
     }
 }

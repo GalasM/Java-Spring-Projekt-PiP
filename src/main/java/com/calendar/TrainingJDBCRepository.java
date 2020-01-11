@@ -41,4 +41,10 @@ public class TrainingJDBCRepository {
     void insert(TrainingBefore training) {
         jdbcTemplate.update("insert into trainingBefore (id, idMatch) " + "values(?, ?)", training.getId(), training.getIdMatch());
     }
+
+    public boolean exist(String idMatch){
+        int count =jdbcTemplate.queryForObject("select count(*) from trainingBefore where idMatch=?",new Object[]{idMatch},Integer.class);
+        return count > 0;
+
+    }
 }

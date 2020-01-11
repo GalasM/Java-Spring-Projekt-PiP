@@ -33,6 +33,7 @@ public class CalendarJDBCRepository {
             event.setStart(rs.getString(("start")));
             event.setEnd(rs.getString("end"));
             event.setType(rs.getString("type"));
+            event.setSklad(rs.getString("sklad"));
             return event;
         }
     }

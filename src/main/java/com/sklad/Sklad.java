@@ -10,15 +10,10 @@ public class Sklad {
     private String id;
     private String name;
     private String formation;
-    @Max(4)
     private List<Footballer> listN;
-    @Max(4)
     private List<Footballer> listP;
-    @Max(4)
     private List<Footballer> listO;
-    @Max(1)
     private List<Footballer> listBR;
-    @Max(7)
     private List<Footballer> listR;
 
     public String getId() {

@@ -55,6 +55,7 @@ public class CalendarController {
             eventT.setType("training");
             eventT.setStart(event.getTrainingDate());
             eventT.setSklad("0");
+            System.out.println(event.toString());
             Repo.insert(event);
             RepoTraining.insert(training);
             Repo.insert(eventT);
@@ -75,10 +76,16 @@ public class CalendarController {
     public RedirectView removeEvent(@ModelAttribute("event") Event event, RedirectAttributes attr) {
         Event event1 = Repo.findById(event.getId());
         if(event1.getType().equals("match")){
-            TrainingBefore x = RepoTraining.getTrainingById(event.getId());
-            Repo.deleteById(x.getId());
-            Repo.deleteById(event.getId());
-            attr.addFlashAttribute("removed","Usunięto mecz oraz zaplanowany trening!");
+            if(RepoTraining.exist(event.getId())) {
+                TrainingBefore x = RepoTraining.getTrainingById(event.getId());
+                Repo.deleteById(x.getId());
+                Repo.deleteById(event.getId());
+                attr.addFlashAttribute("removed", "Usunięto mecz oraz zaplanowany trening!");
+            }
+            else{
+                Repo.deleteById(event.getId());
+                attr.addFlashAttribute("removed", "Usunięto mecz!");
+            }
             return new RedirectView("calendar");
         }
         else {

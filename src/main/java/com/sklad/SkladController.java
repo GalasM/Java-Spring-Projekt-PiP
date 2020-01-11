@@ -74,7 +74,7 @@ public class SkladController {
 
     @GetMapping("/remove")
     public RedirectView remove(@RequestParam(name="id")String id,
-                             @RequestParam(name="idTeam")String idTeam) {
+                               @RequestParam(name="idTeam")String idTeam) {
         sRepo.removeFootballer(idTeam,id);
 
         String url = "sklad?id="+idTeam;

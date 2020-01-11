@@ -20,26 +20,6 @@ public class RestWebController {
         this.Repo = Repo;
     }
 
-    @GetMapping(value = "/all")
-    public String getEvents() {
-        String jsonMsg = null;
-        try {
-            List<Event> ev = Repo.findAll();
-            ev.forEach(x ->{
-                ExtendedProps type = new ExtendedProps("type",x.getType());
-                List<ExtendedProps> list = type.toList();
-                x.setExtendedProps(list);
-            });
-            List<Event> events = new ArrayList<>(ev);
-
-            ObjectMapper mapper = new ObjectMapper();
-            jsonMsg =  mapper.writerWithDefaultPrettyPrinter().writeValueAsString(events);
-        } catch (IOException ioex) {
-            System.out.println(ioex.getMessage());
-        }
-        return jsonMsg;
-    }
-
     @GetMapping(value = "/matches")
     public String getMatches() {
         String jsonMsg = null;
@@ -54,7 +34,7 @@ public class RestWebController {
         return jsonMsg;
     }
 
-    @GetMapping("/all1")
+    @GetMapping("/all")
     public String getEventForFootballer(@RequestParam(name="id", defaultValue = "2")String id) {
         String jsonMsg = null;
         try {
@@ -65,7 +45,6 @@ public class RestWebController {
                 x.setExtendedProps(list);
             });
             List<Event> events = new ArrayList<>(ev);
-
             ObjectMapper mapper = new ObjectMapper();
             jsonMsg =  mapper.writerWithDefaultPrettyPrinter().writeValueAsString(events);
         } catch (IOException ioex) {
@@ -73,10 +52,5 @@ public class RestWebController {
         }
         return jsonMsg;
 
-    }
-
-    @GetMapping("/dupa")
-    public String dupa() {
-        return "14";
     }
 }
