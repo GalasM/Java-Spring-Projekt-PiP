@@ -64,6 +64,7 @@
                     </div>
 
                     <div class="row row--vertical margin-bot50">
+                        <h2 th:utext="${currentTeam.getName()}+' '+${currentTeam.getFormation()}"></h2>
                         <div class="row">
                             <div class="formation">
                                 <div id="formationContainer" class="formation__container formation4-4-2">
@@ -191,6 +192,8 @@
                                 <td th:text="${footballersAll.getImie()}"></td>
                                 <td th:text="${footballersAll.getNazwisko()}"></td>
                                 <td><a th:href="@{/addT(id=${footballersAll.getId()},idTeam=${idTeam})}" class="fas fa-chevron-circle-up" style="color:green; float:right;"></a></td>
+                                <td><a th:href="@{/addR(id=${footballersAll.getId()},idTeam=${idTeam})}" class="fas fa-chair" style="color:black; float:right;"></a></td>
+
                             </li>
 
 

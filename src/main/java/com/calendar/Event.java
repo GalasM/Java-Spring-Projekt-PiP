@@ -79,7 +79,7 @@ public class Event extends Object {
                         setColor("yellow");
                         break;
                     default:
-                        setColor("pink");
+                        setColor("blue");
                 }
         } );
         ExtendedProps = extenedProps;

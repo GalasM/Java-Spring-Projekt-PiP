@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         events: {
                 url: '/api/event/all',
                 extraParams: {
-                    id: localStorage.getItem("player")
+                    id: getId()
                 }
             },
         editable: true,
@@ -50,11 +50,19 @@ function showInfo(){
     let type = document.getElementById("type").value;
     var x =document.getElementById("emptyField");
     var x1 = document.getElementById("trainingDate");
+    var e = document.getElementById("emptyField1");
     if(type==="match"){
         x.style.display = "block";
+        e.style.display = "none";
         x1.required= true;
     }
+    else if(type==="grouping"){
+        e.style.display = "block";
+        x.style.display = "none";
+        x1.required = false;
+    }
     else{
+        e.style.display = "none";
         x.style.display = "none";
         x1.required= false;
     }
@@ -86,16 +94,18 @@ $(document).ready(function() {
     });
     $('#allFootballers').on('change', function() {
         var x = $("#allFootballers option:selected").val();
-        localStorage.setItem("player",x);
-        window.location="/calendar"
+        window.location="/calendar?id="+x;
     })
 });
 
-$(document).ready(function() {
-    loadStorage();
-});
-
-function loadStorage() {
-    localStorage.getItem("player");
+function getId() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const res = urlParams.get('id');
+    if(res===null){
+        return "1"
+    }
+    return res
 }
+
 

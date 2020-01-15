@@ -25,7 +25,8 @@ public class SkladJDBCRepository {
         public Sklad mapRow(ResultSet rs, int rowNum) throws SQLException {
             do {
                 team.id(rs.getString("team.id"))
-                        .name(rs.getString("name"));
+                        .name(rs.getString("name"))
+                        .formation(rs.getString("formation"));
                 Footballer f = new Footballer();
                 f.setId(rs.getString("idFootballer"));
                 f.setImie(rs.getString("imie"));
@@ -70,6 +71,10 @@ public class SkladJDBCRepository {
 
     }
 
+    public Sklad findTeamById(String id){
+        return jdbcTemplate.queryForObject("select * from team where id=?",new Object[]{id},new SkladRowMapper());
+    }
+
     public Sklad findById(String id) {
         Sklad x = jdbcTemplate.queryForObject("select * from team inner join teamfootballer on teamfootballer.idteam=team.id inner join footballer on footballer.id=teamfootballer.idfootballer where team.id=?", new Object[] {id},new TeamRowMapper());
 
@@ -88,6 +93,7 @@ public class SkladJDBCRepository {
     public String updateFootballer(String idTeam, String idFootballer, String status) {
         return String.valueOf(jdbcTemplate.update("update teamFootballer set status = ? where idFootballer=? and idTeam=?", status,idFootballer,idTeam));
     }
+
 
     public String removeFootballer(String idTeam, String idFootballer) {
         return String.valueOf(jdbcTemplate.update("update teamFootballer set idTeam=null where idFootballer=? and idTeam=?", idFootballer,idTeam));

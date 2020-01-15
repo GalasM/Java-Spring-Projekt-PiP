@@ -36,6 +36,7 @@ public class SkladController {
         listAll.addAll(listO);
         listAll.addAll(listBR);
         List<Sklad> allTeams = sRepo.findAllTeams();
+        Sklad currentTeam = sRepo.findTeamById(id);
         model.addAttribute("allFootballersN", listN);
         model.addAttribute("allFootballersP", listP);
         model.addAttribute("allFootballersO", listO);
@@ -45,6 +46,7 @@ public class SkladController {
         model.addAttribute("allFootballersInTeam", listAll);
         model.addAttribute("idTeam",id);
         model.addAttribute("allTeams",allTeams);
+        model.addAttribute("currentTeam",currentTeam);
 
         return "sklad";
     }
@@ -66,7 +68,12 @@ public class SkladController {
     @GetMapping("/addR")
     public RedirectView addR(@RequestParam(name="id")String id,
                              @RequestParam(name="idTeam")String idTeam) {
+        if(sRepo.exist(id,idTeam))
             sRepo.updateFootballer(idTeam,id,"R");
+        else{
+            String idTF = UUID.randomUUID().toString();
+            sRepo.insertFootballer(idTF,idTeam,id,"R");
+        }
 
         String url = "sklad?id="+idTeam;
         return new RedirectView(url,true);

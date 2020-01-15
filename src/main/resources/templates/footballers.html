@@ -71,7 +71,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Imie</th>
                                         <th>Nazwisko</th>
                                         <th>Pozycja</th>
@@ -80,7 +79,6 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="footballers: ${allFootballers}">
-                                        <td th:text="${footballers.getId()}"></td>
                                         <td th:text="${footballers.getImie()}"></td>
                                         <td th:text="${footballers.getNazwisko()}"></td>
                                         <td th:text="${footballers.getPozycja()}"></td>
