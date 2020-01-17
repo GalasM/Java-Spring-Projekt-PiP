@@ -70,4 +70,14 @@ public class CalendarJDBCRepository {
         return jdbcTemplate.query("select e.id,e.title,e.start,e.end,e.type,e.sklad from event e inner join teamfootballer tf on tf.idteam=e.sklad where tf.idfootballer= ? union select e.id,e.title,e.start,e.end,e.type,e.sklad from event e where e.sklad = '0'", new Object[]{id},new EventRowMapper());
     }
 
+
+    public List<Event> findOldMatch()
+    {
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(date);
+        return jdbcTemplate.query("select * from event where type = 'match' and start < ? ", new EventRowMapper(), strDate);
+
+    }
+
 }

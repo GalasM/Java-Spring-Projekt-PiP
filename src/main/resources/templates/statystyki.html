@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <!-- Title -->
+    <title>Statystyki</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap&subset=latin-ext" rel="stylesheet">
+    <!-- CSS libs -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- JS libs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Custom styles -->
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="../static/css/main.min.css" th:href=@{/css/main.min.css}>
+    <!-- Custom scripts -->
+    <script src="../static/js/main.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="header__container container">
+        <div class="row row--space-between">
+            <div class="column header__column--wide">
+                <h1 class="header__header">Statystyki</h1>
+            </div>
+            <!-- if not logged -->
+            <div class="column header__column--narrow">
+                <div class="row row--space-between">
+                    <a href="/login" class="button button--white-background button--black-text">Zaloguj&nbsp;się</a>
+                    <a href="/register" class="button button--black-background button--white-text button--white-border">Zarejestruj&nbsp;się</a>
+                </div>
+            </div>
+            <!-- else -->
+            <!-- <div class="column header__column--narrow">
+                <form action="/" class="row row--vertical-end">
+                    <button type="submit" class="button button--black-background button--white-text button--white-border">Wyloguj się</button>
+                </form>
+            </div> -->
+            <!-- endif -->
+        </div>
+    </div>
+</header>
+<div class="page">
+    <div class="container page__container">
+        <div class="row row--space-between">
+            <aside class="sidebar">
+                <ul class="container">
+                    <li><a href="/">Strona&nbsp;główna</a></li>
+                    <li><a href="/news">Aktualności</a></li>
+                    <li><a href="/footballers">Zawodnicy</a></li>
+                    <li><a href="/calendar">Kalendarz</a></li>
+                    <li><a href="/sklad">Skład</a></li>
+                    <li><a href="/statystyki">Statystyki</a></li>
+                </ul>
+            </aside>
+            <div class="board">
+                <div class="board__container container">
+                    <div class="row">
+                        <h2 class="section-header">Statystyki</h2>
+                    </div>
+                    <ul th:each="message : ${addedStats}">
+                        <li th:text="${message}" class="alert alert-success"></li>
+                    </ul>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Przeciwnik</th>
+                            <th>Wynik</th>
+                            <th>Więcej informacji</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="stats: ${allStats}">
+                            <td th:text="${stats.getPrzeciwnik()}"></td>
+                            <td th:text="${stats.getBramkiM()} + ' : ' + ${stats.getBramkiG()}"></td>
+                            <td><button type="button" class="button button--white-background button--black-text button--black-border button--small" data-toggle="modal" data-target="#myModalStats">Info</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <button type="button" class="button button--white-background button--black-text button--black-border button--small" data-toggle="modal" data-target="#myModal">
+                        Dodaj statystyki
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title ">Dodaj statystyki do meczu</h4>
+                        <button type="button" class="close " data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action = "addMatch"  method="post">
+                            <div class="form-group">
+                                <label for="przeciwnik">Przeciwnik:</label>
+                                <select id='przeciwnik' name='przeciwnik' class="custom-select" >
+                                    <option th:id="0" th:value="0" th:utext="Wybierz" selected></option>
+                                    <option th:each="oldMatches: ${oldMatches}" th:id="${oldMatches.getTitle()}" th:value="${oldMatches.getTitle()}" th:utext="${oldMatches.getTitle()}" ></option>
+                                    </th:each>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bramkiM">Liczba bramek gospodarza:</label>
+                                <input type="text" class="form-control" id="bramkiM" placeholder="Podaj liczbe bramek gospodarza" name="bramkiM" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bramkiG">Liczba bramek goscia:</label>
+                                <input type="text" class="form-control" id="bramkiG" placeholder="Podaj liczbe bramek goscia" name="bramkiG" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="posiadanieM">Posiadanie piłki gospodarza:</label>
+                                <input type="text" class="form-control" id="posiadanieM" placeholder="Podaj posiadanie gospodarza" name="posiadanieM" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="posiadanieG">Posiadanie piłki gościa:</label>
+                                <input type="text" class="form-control" id="posiadanieG" placeholder="Podaj posiadanie goscia" name="posiadanieG" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Dodaj</button>
+                        </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- The Modal 2-->
+        <div class="modal" id="myModalStats">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title ">Podgląd statystyk</h4>
+                        <button type="button" class="close " data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Przeciwnik</th>
+                                <th>Wynik</th>
+                                <th>Posiadanie piłki</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="stats: ${allStats}">
+                                <td th:text="${stats.getPrzeciwnik()}"></td>
+                                <td th:text="${stats.getBramkiM()} + ' : ' + ${stats.getBramkiG()}"></td>
+                                <td th:text="${stats.getPosiadanieM()} + '% - ' + ${stats.getPosiadanieG()} + '%'"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<footer id="footer" class="footer">
+    <div class="container footer__container">
+        <div class="row row--space-between">
+            <span>Wszelkie prawa zastrzeżone &copy; 2019 PiP</span>
+            <span>Projekt i&nbsp;wykonanie: <strong>Galas, Gluch, Faron, Grzyb</strong></span>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

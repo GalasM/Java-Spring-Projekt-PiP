@@ -1,5 +1,6 @@
 drop table if exists footballer;
 drop table if exists news;
+drop table if exists statystyki;
 
 create table footballer
 (
@@ -62,4 +63,15 @@ create table trainingBefore
   id varchar(255) not null,
   idMatch varchar(255),
   constraint fk foreign key(idMatch) references event(id) on delete cascade
+);
+
+create table statystyki
+(
+  id varchar(255) not null,
+  przeciwnik varchar(255),
+  bramkiM varchar(255),
+  bramkiG varchar(255),
+  posiadanieM varchar(5),
+  posiadanieG varchar(5),
+  primary key(id)
 );
