@@ -1,5 +1,5 @@
-@import './_mixins';
-@import './_variables';
+@import 'modules/_mixins';
+@import 'modules/_variables';
 
 .page {
     width: 100%;
@@ -9,7 +9,7 @@
         margin: 0 auto;
         max-width: 1440px;
         width: 100%;
-        min-height: 83.6vh;
+        min-height: 860px;
         position: relative;
 
         &:after, &:before {
