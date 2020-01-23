@@ -1,6 +1,5 @@
 package com.sklad;
 
-import com.Validators.ListMax;
 import com.footballer.Footballer;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +142,6 @@ public class Sklad {
         }
 
         public Builder addO(Footballer f) {
-
             this.listO.add(f);
             return this;
         }

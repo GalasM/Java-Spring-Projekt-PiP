@@ -5,6 +5,7 @@ import com.footballer.FootballerJDBCRepository;
 import com.sklad.Sklad;
 import com.sklad.SkladJDBCRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,45 +50,58 @@ public class CalendarController {
 
     @PostMapping("/addEvent")
     public RedirectView addEvent(@ModelAttribute("event") Event event, RedirectAttributes attr) {
-        if(event.getType().equals("match")){
-            List<Footballer> x = sRepo.findById(event.getSklad()).getAllFootballers();
-            List<Footballer> busy  = new ArrayList<>();
-            x.forEach(f->{
-                if(fRepo.hasEvent(f.getId(),event.getStart())){
-                    busy.add(f);
+        if(event.getType().equals("match")) {
+            try {
+                List<Footballer> x = sRepo.findById(event.getSklad()).getAllFootballers();
+
+            if (x.size() < 11) {
+                attr.addFlashAttribute("info", "Ten skład nie ma 11 zawodników");
+                return new RedirectView("sklad?id="+event.getSklad());
+            } else {
+                List<Footballer> busy = new ArrayList<>();
+                x.forEach(f -> {
+                    if (fRepo.hasEvent(f.getId(), event.getStart())) {
+                        busy.add(f);
+                    }
+                });
+                if (!busy.isEmpty()) {
+                    String b = busy.stream()
+                            .map(footballer -> footballer.getNazwisko() + " " + footballer.getImie())
+                            .collect(Collectors.joining(", "));
+                    attr.addFlashAttribute("info", "Następujący zawodnicy maja juz tego dnia mecz: " + b);
+                    return new RedirectView("sklad?id=" + event.getSklad());
                 }
-            });
-            if(!busy.isEmpty()) {
-                String b = busy.stream()
-                        .map(footballer -> footballer.getNazwisko()+" "+footballer.getImie())
-                        .collect(Collectors.joining(", "));
-                attr.addFlashAttribute("info","Następujący zawodnicy maja juz tego dnia mecz: "+b);
+                String id = UUID.randomUUID().toString();
+                String idT = UUID.randomUUID().toString();
+                event.setId(id);
+                TrainingBefore training = new TrainingBefore(idT, id);
+                Event eventT = new Event();
+                eventT.setId(idT);
+                eventT.setTitle("Trening przed " + event.getTitle());
+                eventT.setType("training");
+                eventT.setStart(event.getTrainingDate());
+                eventT.setSklad("0");
+                Repo.insert(event);
+                RepoTraining.insert(training);
+                Repo.insert(eventT);
+
+                attr.addFlashAttribute("added", "Dodano mecz oraz trening!");
+                return new RedirectView("calendar");
+            }
+            }catch (EmptyResultDataAccessException e){
+                attr.addFlashAttribute("info", "Ten skład nie ma 11 zawodników");
                 return new RedirectView("sklad?id="+event.getSklad());
             }
-            String id = UUID.randomUUID().toString();
-            String idT = UUID.randomUUID().toString();
-            event.setId(id);
-            TrainingBefore training = new TrainingBefore(idT,id);
-            Event eventT = new Event();
-            eventT.setId(idT);
-            eventT.setTitle("Trening przed "+ event.getTitle());
-            eventT.setType("training");
-            eventT.setStart(event.getTrainingDate());
-            eventT.setSklad("0");
-            Repo.insert(event);
-            RepoTraining.insert(training);
-            Repo.insert(eventT);
+        }
 
-            attr.addFlashAttribute("added","Dodano mecz oraz trening!");
-            return new RedirectView("calendar");
-        }
-        else {
-            String id = UUID.randomUUID().toString();
-            event.setId(id);
-            Repo.insert(event);
-            attr.addFlashAttribute("added", "Dodano wydarzenie!");
-            return new RedirectView("calendar");
-        }
+        else{
+                String id = UUID.randomUUID().toString();
+                event.setId(id);
+                Repo.insert(event);
+                attr.addFlashAttribute("added", "Dodano wydarzenie!");
+                return new RedirectView("calendar");
+            }
+
     }
 
     @PostMapping("/removeEvent")
