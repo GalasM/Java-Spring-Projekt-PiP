@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 public class CalendarController {
@@ -48,6 +50,20 @@ public class CalendarController {
     @PostMapping("/addEvent")
     public RedirectView addEvent(@ModelAttribute("event") Event event, RedirectAttributes attr) {
         if(event.getType().equals("match")){
+            List<Footballer> x = sRepo.findById(event.getSklad()).getAllFootballers();
+            List<Footballer> busy  = new ArrayList<>();
+            x.forEach(f->{
+                if(fRepo.hasEvent(f.getId(),event.getStart())){
+                    busy.add(f);
+                }
+            });
+            if(!busy.isEmpty()) {
+                String b = busy.stream()
+                        .map(footballer -> footballer.getNazwisko()+" "+footballer.getImie())
+                        .collect(Collectors.joining(", "));
+                attr.addFlashAttribute("info","Następujący zawodnicy maja juz tego dnia mecz: "+b);
+                return new RedirectView("sklad?id="+event.getSklad());
+            }
             String id = UUID.randomUUID().toString();
             String idT = UUID.randomUUID().toString();
             event.setId(id);

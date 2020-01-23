@@ -50,7 +50,7 @@ public class FootballerJDBCRepository {
     }
 
     public int update(Footballer footballer) {
-        return jdbcTemplate.update("update footballer " + " set name = ?, nazwisko = ?, pozycja = ?, status = ? " + " where id = ?", footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja(), footballer.getStatus(), footballer.getId());
+        return jdbcTemplate.update("update footballer " + " set name = ?, nazwisko = ?, pozycja = ?" + " where id = ?", footballer.getImie(), footballer.getNazwisko(), footballer.getPozycja(), footballer.getId());
     }
 
     public List<Footballer> findN(String id) {
@@ -75,5 +75,10 @@ public class FootballerJDBCRepository {
 
     public List<Footballer> findAllWithoutOne(String id) {
         return jdbcTemplate.query("select distinct footballer.id,footballer.imie,footballer.nazwisko, footballer.pozycja from footballer inner join teamfootballer on teamfootballer.idfootballer=footballer.id where teamfootballer.idteam is not ? and footballer.id not in (select idfootballer from teamfootballer where idteam is ?)",new Object[]{id,id}, new FootballerRowMapper());
+    }
+
+    public boolean hasEvent(String idFootballer,String date) {
+        int count = jdbcTemplate.queryForObject("select count(*) from event e inner join teamfootballer tf on e.sklad=tf.idteam where tf.idfootballer=? and e.start=?; ",new Object[]{idFootballer,date}, Integer.class);
+                return count > 0;
     }
 }

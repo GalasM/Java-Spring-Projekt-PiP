@@ -168,7 +168,54 @@
     &__item-wrapper {
         margin-bottom: 50px;
         @include display-flex;
-        @include justify-content(center);
+        @include flex-direction($value: column);
+            .formation__position{
+                &:first-child{
+                    @include display-flex;
+                    @include justify-content(center);
+                    @include flex-wrap(wrap);
+                        .formation__item-header{
+                            background-color: $primary-red;
+                        }
+                    
+                }
+                &:nth-child(n+2){
+                    @include display-flex;
+                    @include justify-content(center);
+                    @include flex-wrap(wrap);
+                        .formation__item-header{
+                            background-color: $secondary-green;
+                        }
+                }
+                &:nth-child(n+3){
+                    @include display-flex;
+                    @include justify-content(center);
+                    @include flex-wrap(wrap);
+                        .formation__item-header{
+                            background-color: $primary-blue;
+                        }
+                }
+                &:nth-child(n+4){
+                    width: 100%;
+                    @include display-flex;
+                    @include justify-content(center);
+                    @include flex-wrap(wrap);
+                    .formation__item{
+                        .formation__item-header{
+                            background-color: $secondary-orange !important;
+                        }
+                    }
+                }
+            }
+        
+        
+    }
+
+    &__position{
+        display:flex;
+        justify-content: space-between;
+        margin: 30px 0;
+        padding: 0 auto;
     }
 
     &__item {

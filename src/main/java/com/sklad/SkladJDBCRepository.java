@@ -31,11 +31,12 @@ public class SkladJDBCRepository {
                 f.setId(rs.getString("idFootballer"));
                 f.setImie(rs.getString("imie"));
                 f.setNazwisko(rs.getString("nazwisko"));
-                f.setStatus(rs.getString("status"));
                 f.setPozycja(rs.getString("pozycja"));
-                if (f.getStatus().equals("R")) {
+                String status = rs.getString("status");
+                if(status.equals("R")){
                     team.addR(f);
                 }
+                else
                 switch (f.getPozycja()) {
                     case "N":
                         team.addN(f);
@@ -77,7 +78,6 @@ public class SkladJDBCRepository {
 
     public Sklad findById(String id) {
         Sklad x = jdbcTemplate.queryForObject("select * from team inner join teamfootballer on teamfootballer.idteam=team.id inner join footballer on footballer.id=teamfootballer.idfootballer where team.id=?", new Object[] {id},new TeamRowMapper());
-
         return x;
     }
 

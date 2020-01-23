@@ -1,11 +1,9 @@
 package com.sklad;
 
+import com.Validators.ListMax;
 import com.footballer.Footballer;
-
-import javax.validation.constraints.Max;
 import java.util.ArrayList;
 import java.util.List;
-
 public class Sklad {
     private String id;
     private String name;
@@ -80,19 +78,28 @@ public class Sklad {
         this.listR = listR;
     }
 
+    public List<Footballer> getAllFootballers(){
+        List<Footballer> all = new ArrayList<>();
+        if(!listN.isEmpty())
+        all.addAll(listN);
+        if(!listP.isEmpty())
+        all.addAll(listP);
+        if(!listO.isEmpty())
+        all.addAll(listO);
+        if(!listBR.isEmpty())
+        all.addAll(listBR);
+        //all.addAll(listR);
+        return all;
+    }
+
     public static final class Builder {
         private String id;
         private String name;
         private String formation;
-        @Max(4)
         private List<Footballer> listN = new ArrayList<>();
-        @Max(4)
         private List<Footballer> listP = new ArrayList<>();
-        @Max(4)
         private List<Footballer> listO = new ArrayList<>();
-        @Max(1)
         private List<Footballer> listBR = new ArrayList<>();
-        @Max(7)
         private List<Footballer> listR = new ArrayList<>();
 
         public Builder id(String id){
@@ -136,6 +143,7 @@ public class Sklad {
         }
 
         public Builder addO(Footballer f) {
+
             this.listO.add(f);
             return this;
         }

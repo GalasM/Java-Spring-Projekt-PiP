@@ -30,6 +30,7 @@ public class SkladController {
         List<Footballer> listBR = uRepo.findBR(id);
         List<Footballer> listR = uRepo.findR(id);
         List<Footballer> listAllOutTeam = uRepo.findAllWithoutOne(id);
+
         List<Footballer> listAll = new ArrayList<>();
         listAll.addAll(listN);
         listAll.addAll(listP);

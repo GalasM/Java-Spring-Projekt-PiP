@@ -17,7 +17,7 @@ values('8', 'Michał', 'Stępień', 'N');
 insert into footballer
 values('9', 'Sebastian', 'Gil', 'P');
 insert into footballer
-values('10', 'Michał', 'Nowak', 'O');
+values('10', 'Michał', 'Nowak', 'P');
 insert into footballer
 values('11', 'Bartosz', 'Kowalski', 'BR');
 insert into footballer
@@ -26,6 +26,16 @@ insert into footballer
 values('13', 'Adam', 'Piotrowski', 'O');
 insert into footballer
 values('14', 'Tymon', 'Wierzbicki', 'BR');
+insert into footballer
+values('15', 'Wawrzyniec', 'Posębski', 'P');
+insert into footballer
+values('16', 'Damian', 'Opolski', 'O');
+insert into footballer
+values('17', 'Mateusz', 'Iglica', 'N');
+insert into footballer
+values('18', 'Henryk', 'Lewandowski', 'N');
+insert into footballer
+values('19', 'Tomasz', 'Piotrowski', 'P');
 
 insert into team
 values ('1', 'Pierwszy Skład', '3-4-3');
@@ -78,6 +88,16 @@ insert into teamFootballer
 values ('21', '2','5','S');
 insert into teamFootballer
 values ('22', '2','6','S');
+insert into teamFootballer
+values ('24', null,'16',null);
+insert into teamFootballer
+values ('25', null,'17',null);
+insert into teamFootballer
+values ('26', null,'18',null);
+insert into teamFootballer
+values ('27', null,'19',null);
+insert into teamFootballer
+values ('28', null,'15',null);
 
 insert into event
 values('1', 'Event 1', '2020-01-11', '2019-11-12', 'match', '1');

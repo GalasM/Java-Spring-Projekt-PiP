@@ -62,26 +62,67 @@
                     <div class="row">
                         <h2 class="section-header">Skład drużyny</h2>
                     </div>
-
+                    <ul th:each="message : ${info}">
+                        <li th:text="${message}" class="alert alert-danger" />
+                    </ul>
                     <div class="row row--vertical margin-bot50">
                         <h2 th:utext="${currentTeam.getName()}+' '+${currentTeam.getFormation()}"></h2>
                         <div class="row">
                             <div class="formation">
-                                <div id="formationContainer" class="formation__container formation4-4-2">
 
-                                    <div class="formation__item-wrapper" th:each="all : ${allFootballersInTeam}">
-                                        <div class="formation__item">
+                                <div class="formation__item-wrapper">
+
+                                    <div class="formation__position">
+                                        <div class="formation__item" th:each="allN : ${allFootballersN}">
+                                            <div class="formation__item-header">
+                                                <p>napastnik</p>
+                                            </div>
+                                            <div class="formation__item-content">
+                                                <h2>1</h2>
+                                                <p th:text="${allN.getImie()}"></p>
+                                                <p th:text="${allN.getNazwisko()}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="formation__position" >
+                                        <div class="formation__item" th:each="allP : ${allFootballersP}">
+                                            <div class="formation__item-header">
+                                                <p>pomocnik</p>
+                                            </div>
+                                            <div class="formation__item-content">
+                                                <h2>2</h2>
+                                                <p th:text="${allP.getImie()}"></p>
+                                                <p th:text="${allP.getNazwisko()}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="formation__position" >
+                                        <div class="formation__item" th:each="allO : ${allFootballersO}">
                                             <div class="formation__item-header">
                                                 <p>pozycja</p>
                                             </div>
                                             <div class="formation__item-content">
                                                 <h2>1</h2>
-                                                <p th:text="${all.getImie()}"></p>
-                                                <p th:text="${all.getNazwisko()}"></p>
+                                                <p th:text="${allO.getImie()}"></p>
+                                                <p th:text="${allO.getNazwisko()}"></p>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="formation__position" >
+                                        <div class="formation__item" th:each="allBR : ${allFootballersBR}">
+                                            <div class="formation__item-header">
+                                                <p>pozycja</p>
+                                            </div>
+                                            <div class="formation__item-content">
+                                                <h2>1</h2>
+                                                <p th:text="${allBR.getImie()}"></p>
+                                                <p th:text="${allBR.getNazwisko()}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
