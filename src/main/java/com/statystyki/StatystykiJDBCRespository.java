@@ -29,12 +29,26 @@ public class StatystykiJDBCRespository {
             stats.setBramkiG(rs.getString("bramkiG"));
             stats.setPosiadanieM(rs.getString("posiadanieM"));
             stats.setPosiadanieG(rs.getString("posiadanieG"));
+            stats.setStrzalyM(rs.getString("strzalyM"));
+            stats.setStrzalyG(rs.getString("strzalyG"));
+            stats.setZolteKartkiM(rs.getString("zolteKartkiM"));
+            stats.setZolteKartkiG(rs.getString("zolteKartkiG"));
+            stats.setCzerwoneKartkiM(rs.getString("czerwoneKartkiM"));
+            stats.setCzerwoneKartkiG(rs.getString("czerwoneKartkiG"));
+            stats.setFauleM(rs.getString("fauleM"));
+            stats.setFauleG(rs.getString("fauleG"));
+            stats.setSpaloneM(rs.getString("spaloneM"));
+            stats.setSpaloneG(rs.getString("spaloneG"));
+
+
             return stats;
         }
     }
 
     public void insert(Statystyki stats) {
-        jdbcTemplate.update("insert into statystyki(id,przeciwnik,bramkiM,bramkiG,posiadanieM,posiadanieG)" + "values(?, ?, ?, ?, ?, ?)", stats.getAid(), stats.getPrzeciwnik(), stats.getBramkiM(), stats.getBramkiG(), stats.getPosiadanieM(), stats.getPosiadanieG());
+        int posiadanieG = 100 - Integer.parseInt(stats.getPosiadanieM());
+
+        jdbcTemplate.update("insert into statystyki(id,przeciwnik,bramkiM,bramkiG,posiadanieM,posiadanieG, strzalyM, strzalyG, zolteKartkiM, zolteKartkiG, czerwoneKartkiM, czerwoneKartkiG, fauleM, fauleG, spaloneM, spaloneG)" + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)", stats.getAid(), stats.getPrzeciwnik(), stats.getBramkiM(), stats.getBramkiG(), stats.getPosiadanieM(), posiadanieG, stats.getStrzalyM(), stats.getStrzalyG(), stats.getZolteKartkiM(), stats.getZolteKartkiG(), stats.getCzerwoneKartkiM(), stats.getCzerwoneKartkiG(), stats.getFauleM(), stats.getFauleG(), stats.getSpaloneM(), stats.getSpaloneG());
     }
 
     public List<Statystyki> findAll()

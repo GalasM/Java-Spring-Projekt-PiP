@@ -108,6 +108,5 @@ insert into news
 values(1, 'Przykładowy temat', 'Przykładowa treść, przykładowa treść, przykładowa treść.', '08-01-2020 19:51:32');
 
 insert into statystyki
-values(1, 'Fc Barcelona', '1', '0', '50', '50');
-insert into statystyki
-values(2, 'Korona Kielce', '3', '2', '62', '38');
+values(1, 'Fc Barcelona', '1', '0', '50', '50', '11', '4', '3', '2', '0', '0', '8', '6', '7', '4');
+

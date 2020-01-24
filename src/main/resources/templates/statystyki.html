@@ -108,11 +108,11 @@
                         <form action = "addMatch"  method="post">
                             <div class="form-group">
                                 <label for="przeciwnik">Przeciwnik:</label>
-                                <select id='przeciwnik' name='przeciwnik' class="custom-select" >
-                                    <option th:id="0" th:value="0" th:utext="Wybierz" selected></option>
-                                    <option th:each="oldMatches: ${oldMatches}" th:id="${oldMatches.getTitle()}" th:value="${oldMatches.getTitle()}" th:utext="${oldMatches.getTitle()}" ></option>
+                                <select id='przeciwnik' name='przeciwnik' class="custom-select" required>
+                                      <option th:each="oldMatches: ${oldMatches}" th:id="${oldMatches.getTitle()}" th:value="${oldMatches.getTitle()}" th:utext="${oldMatches.getTitle()}" ></option>
                                     </th:each>
                                 </select>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
                             </div>
                             <div class="form-group">
                                 <label for="bramkiM">Liczba bramek gospodarza:</label>
@@ -127,14 +127,66 @@
                                 <div class="invalid-feedback">Proszę wypełnić pole</div>
                             </div>
                             <div class="form-group">
-                                <label for="posiadanieM">Posiadanie piłki gospodarza:</label>
-                                <input type="text" class="form-control" id="posiadanieM" placeholder="Podaj posiadanie gospodarza" name="posiadanieM" required>
+                                <label for="posiadanieM">Posiadanie piłki gospodarza   (posiadanie piłki gościa jest wyliczane automatycznie)</label>
+                                <input type="range" class="custom-range" id="posiadanieM" name="posiadanieM">
+                            </div>
+                            <div class="form-group">
+                                <label for="strzalyM">Liczba strzalow na bramke gospodarza:</label>
+                                <input type="text" class="form-control" id="strzalyM" placeholder="Podaj liczbe strzalow na bramke gospodarza" name="strzalyM" required>
                                 <div class="valid-feedback">Uzupełniono</div>
                                 <div class="invalid-feedback">Proszę wypełnić pole</div>
                             </div>
                             <div class="form-group">
-                                <label for="posiadanieG">Posiadanie piłki gościa:</label>
-                                <input type="text" class="form-control" id="posiadanieG" placeholder="Podaj posiadanie goscia" name="posiadanieG" required>
+                                <label for="strzalyG">Liczba strzalow na bramke goscia:</label>
+                                <input type="text" class="form-control" id="strzalyG" placeholder="Podaj liczbe strzalow na bramke goscia" name="strzalyG" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="zolteKartkiM">Liczba zoltych kartek gospodarza:</label>
+                                <input type="text" class="form-control" id="zolteKartkiM" placeholder="Podaj liczbe zoltych kartek gospodarza" name="zolteKartkiM" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="zolteKartkiG">Liczba zoltych kartek goscia:</label>
+                                <input type="text" class="form-control" id="zolteKartkiG" placeholder="Podaj liczbe zoltych kartek goscia" name="zolteKartkiG" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="czerwoneKartkiM">Liczba czerwonych kartek gospodarza:</label>
+                                <input type="text" class="form-control" id="czerwoneKartkiM" placeholder="Podaj liczbe czerwonych kartek gospodarza" name="czerwoneKartkiM" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="czerwoneKartkiG">Liczba czerwonych kartek goscia:</label>
+                                <input type="text" class="form-control" id="czerwoneKartkiG" placeholder="Podaj liczbe czerwonych kartek goscia" name="czerwoneKartkiG" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fauleM">Liczba fauli gospodarza:</label>
+                                <input type="text" class="form-control" id="fauleM" placeholder="Podaj liczbe fauli gospodarza" name="fauleM" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fauleG">Liczba fauli goscia:</label>
+                                <input type="text" class="form-control" id="fauleG" placeholder="Podaj liczbe fauli goscia" name="fauleG" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="spaloneM">Liczba spalonych gospodarza:</label>
+                                <input type="text" class="form-control" id="spaloneM" placeholder="Podaj liczbe spalonych gospodarza" name="spaloneM" required>
+                                <div class="valid-feedback">Uzupełniono</div>
+                                <div class="invalid-feedback">Proszę wypełnić pole</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="spaloneG">Liczba spalonych goscia:</label>
+                                <input type="text" class="form-control" id="spaloneG" placeholder="Podaj liczbe spalonych goscia" name="spaloneG" required>
                                 <div class="valid-feedback">Uzupełniono</div>
                                 <div class="invalid-feedback">Proszę wypełnić pole</div>
                             </div>
@@ -167,6 +219,11 @@
                                 <th>Przeciwnik</th>
                                 <th>Wynik</th>
                                 <th>Posiadanie piłki</th>
+                                <th>Strzaly na bramke</th>
+                                <th>Zolte kartki</th>
+                                <th>Czerwone kartki</th>
+                                <th>Faule</th>
+                                <th>Spalone</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -174,6 +231,11 @@
                                 <td th:text="${stats.getPrzeciwnik()}"></td>
                                 <td th:text="${stats.getBramkiM()} + ' : ' + ${stats.getBramkiG()}"></td>
                                 <td th:text="${stats.getPosiadanieM()} + '% - ' + ${stats.getPosiadanieG()} + '%'"></td>
+                                <td th:text="${stats.getStrzalyM()} + ' - ' + ${stats.getStrzalyG()}"></td>
+                                <td th:text="${stats.getZolteKartkiM()} + ' - ' + ${stats.getZolteKartkiG()}"></td>
+                                <td th:text="${stats.getCzerwoneKartkiM()} + ' - ' + ${stats.getCzerwoneKartkiG()}"></td>
+                                <td th:text="${stats.getFauleM()} + ' - ' + ${stats.getFauleG()}"></td>
+                                <td th:text="${stats.getSpaloneM()} + ' - ' + ${stats.getSpaloneG()}"></td>
                             </tr>
                             </tbody>
                         </table>

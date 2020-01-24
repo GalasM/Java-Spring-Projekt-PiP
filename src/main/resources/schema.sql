@@ -73,5 +73,16 @@ create table statystyki
   bramkiG varchar(255),
   posiadanieM varchar(5),
   posiadanieG varchar(5),
+  strzalyM varchar(5),
+  strzalyG varchar(5),
+  zolteKartkiM varchar(5),
+  zolteKartkiG varchar(5),
+  czerwoneKartkiM varchar(5),
+  czerwoneKartkiG varchar(5),
+  fauleM varchar(5),
+  fauleG varchar(5),
+  spaloneM varchar(5),
+  spaloneG varchar(5),
   primary key(id)
 );
+

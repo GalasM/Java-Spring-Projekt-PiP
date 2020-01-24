@@ -33,6 +33,17 @@ public class StatystykiController {
         model.addAttribute("bramkiG", stats.getBramkiG());
         model.addAttribute("posiadanieM", stats.getPosiadanieM());
         model.addAttribute("posiadanieG", stats.getPosiadanieG());
+        model.addAttribute("strzalyM", stats.getStrzalyM());
+        model.addAttribute("strzalyG", stats.getStrzalyG());
+        model.addAttribute("zolteKartkiM", stats.getZolteKartkiM());
+        model.addAttribute("zolteKartkiG", stats.getZolteKartkiG());
+        model.addAttribute("czerwoneKartkiM", stats.getCzerwoneKartkiM());
+        model.addAttribute("czerwoneKatkiG", stats.getCzerwoneKartkiG());
+        model.addAttribute("fauleM", stats.getFauleM());
+        model.addAttribute("fauleG", stats.getFauleG());
+        model.addAttribute("spaloneM", stats.getSpaloneM());
+        model.addAttribute("spaloneG", stats.getSpaloneG());
+
         String id = UUID.randomUUID().toString();
         stats.setAid(id);
 
