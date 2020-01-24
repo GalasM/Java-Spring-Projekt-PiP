@@ -26,7 +26,7 @@ public class SkladController {
     }
 
     @GetMapping("/sklad")
-    public String allFootballersN(Model model, @RequestParam(name="id", defaultValue = "1") String id) {
+    public String sklad(Model model, @RequestParam(name="id", defaultValue = "1") String id) {
         List<Footballer> listN = uRepo.findN(id);
         List<Footballer> listP = uRepo.findP(id);
         List<Footballer> listO = uRepo.findO(id);

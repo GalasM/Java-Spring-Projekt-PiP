@@ -106,7 +106,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="start">Rozpoczęcie wydarzenia:</label>
-                                                        <input type="date" class="form-control" id="start" placeholder="Podaj date" name="start" required>
+                                                        <input type="datetime-local" class="form-control" id="start" placeholder="Podaj date" name="start" required>
                                                         <div class="valid-feedback">Uzupełniono</div>
                                                         <div class="invalid-feedback">Proszę wypełnić pole</div>
                                                     </div>
@@ -129,7 +129,7 @@
                                                     </div>
                                                     <div id="emptyField" class="form-group" style="display:none">
                                                         <label for="end">Data treningu przed meczem</label>
-                                                        <input type="date" class="form-control" id="trainingDate" placeholder="Podaj date" name="trainingDate" >
+                                                        <input type="datetime-local" class="form-control" id="trainingDate" placeholder="Podaj date" name="trainingDate" >
                                                         <label for="end">Skład</label>
                                                         <select id='sklad' name='sklad' class="custom-select" >
                                                             <option th:id="0" th:value="0" th:utext="Wybierz"></option>

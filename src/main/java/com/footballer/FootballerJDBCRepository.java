@@ -78,7 +78,7 @@ public class FootballerJDBCRepository {
     }
 
     public boolean hasEvent(String idFootballer,String date) {
-        int count = jdbcTemplate.queryForObject("select count(*) from event e inner join teamfootballer tf on e.sklad=tf.idteam where tf.idfootballer=? and e.start=?; ",new Object[]{idFootballer,date}, Integer.class);
+        int count = jdbcTemplate.queryForObject("select count(*) from event e inner join teamfootballer tf on e.sklad=tf.idteam where tf.idfootballer=? and (?>= e.start and ?<= e.end); ",new Object[]{idFootballer,date,date}, Integer.class);
                 return count > 0;
     }
 }

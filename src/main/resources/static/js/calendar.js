@@ -21,6 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     id: getId()
                 }
             },
+        eventTimeFormat: {
+            hour: '2-digit',
+            minute: '2-digit',
+            meridiem: false,
+            hour12: false
+        },
         editable: true,
         eventClick: function(info) {
             var eventObj = info.event;
@@ -74,14 +80,12 @@ $(document).ready(function() {
         fields: {
             trainingDate: {
                 validators: {
-                    date: {
-                        format: 'YYYY-MM-DD'
-                    },
                     callback: {
                         message: 'Trening musi się odbyć przed meczem!',
-                        callback: function(value, validator) {
+                        callback: function(value) {
+                            console.log(value);
                             var match = document.getElementById('start');
-                            var m = new moment(value, 'YYYY-MM-DD', true);
+                            var m = new moment(value);
                             if (!m.isValid()) {
                                 return false;
                             }

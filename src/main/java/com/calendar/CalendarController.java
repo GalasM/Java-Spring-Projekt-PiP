@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 @Controller
@@ -74,6 +74,16 @@ public class CalendarController {
                 String id = UUID.randomUUID().toString();
                 String idT = UUID.randomUUID().toString();
                 event.setId(id);
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                Date date = formatter.parse(event.getStart());
+                Calendar c = Calendar.getInstance();
+                c.setTime(date);
+                c.add(Calendar.MINUTE, 90);
+                date = c.getTime();
+                String dateS = formatter.format(date);
+                event.setEnd(dateS);
+
                 TrainingBefore training = new TrainingBefore(idT, id);
                 Event eventT = new Event();
                 eventT.setId(idT);
@@ -91,6 +101,10 @@ public class CalendarController {
             }catch (EmptyResultDataAccessException e){
                 attr.addFlashAttribute("info", "Ten skład nie ma 11 zawodników");
                 return new RedirectView("sklad?id="+event.getSklad());
+            }
+            catch (ParseException e){
+                e.printStackTrace();
+                return new RedirectView("calendar");
             }
         }
 

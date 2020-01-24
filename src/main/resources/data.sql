@@ -100,9 +100,9 @@ insert into teamFootballer
 values ('28', null,'15',null);
 
 insert into event
-values('1', 'Event 1', '2020-01-11', '2019-11-12', 'match', '1');
+values('1', 'Event 1', '2020-01-11T15:30', '2020-01-11T17:00', 'match', '1');
 insert into event
-values('2', 'Event 2', '2020-01-20', '2019-11-23', 'training', '0');
+values('2', 'Event 2', '2020-01-20T15:30', '2019-11-23', 'training', '0');
 
 insert into news
 values(1, 'Przykładowy temat', 'Przykładowa treść, przykładowa treść, przykładowa treść.', '08-01-2020 19:51:32');
