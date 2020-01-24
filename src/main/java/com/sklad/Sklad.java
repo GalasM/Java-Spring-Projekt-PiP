@@ -77,6 +77,10 @@ public class Sklad {
         this.listR = listR;
     }
 
+    public void removeFootballerP(int f){
+        listP.remove(f);
+    }
+
     public List<Footballer> getAllFootballers(){
         List<Footballer> all = new ArrayList<>();
         if(!listN.isEmpty())

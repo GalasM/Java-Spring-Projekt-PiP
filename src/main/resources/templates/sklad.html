@@ -66,6 +66,18 @@
                         <li th:text="${message}" class="alert alert-danger" />
                     </ul>
                     <div class="row row--vertical margin-bot50">
+                        <div class="form-group">
+                            <label for="formation">Formacja</label>
+                            <select class="custom-select" id = "formationSelect" name="formation" required>
+                                <option value="">Formacja</option>
+                                <option id="4-4-2" th:value="${currentTeam.getId()}">4-4-2</option>
+                                <option id="4-5-1" th:value="${currentTeam.getId()}">4-5-1</option>
+                                <option id="5-4-1" th:value="${currentTeam.getId()}">5-4-1</option>
+                                <option id="5-3-2" th:value="${currentTeam.getId()}">5-3-2</option>
+                                <option id="3-4-3" th:value="${currentTeam.getId()}">3-4-3</option>
+                            </select>
+                            <div class="invalid-feedback">Proszę wypełnić pole</div>
+                        </div>
                         <h2 th:utext="${currentTeam.getName()}+' '+${currentTeam.getFormation()}"></h2>
                         <div class="row">
                             <div class="formation">
@@ -101,7 +113,7 @@
                                     <div class="formation__position" >
                                         <div class="formation__item" th:each="allO : ${allFootballersO}">
                                             <div class="formation__item-header">
-                                                <p>pozycja</p>
+                                                <p>obrońca</p>
                                             </div>
                                             <div class="formation__item-content">
                                                 <h2>1</h2>
@@ -114,7 +126,7 @@
                                     <div class="formation__position" >
                                         <div class="formation__item" th:each="allBR : ${allFootballersBR}">
                                             <div class="formation__item-header">
-                                                <p>pozycja</p>
+                                                <p>bramkarz</p>
                                             </div>
                                             <div class="formation__item-content">
                                                 <h2>1</h2>

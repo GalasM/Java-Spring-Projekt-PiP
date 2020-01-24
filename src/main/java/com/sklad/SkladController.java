@@ -140,4 +140,42 @@ public class SkladController {
         String url = "sklad?id="+id;
         return new RedirectView(url,true);
     }
+
+    @GetMapping("/updateFormation")
+    public RedirectView updateFormation(@RequestParam(name="formation")String formation,
+                                        @RequestParam(name="idTeam")String idTeam) {
+        ArrayList<String> sizes1 = new ArrayList<>(Arrays.asList(formation.split("-")));
+        sRepo.updateFormation(formation,idTeam);
+        Sklad sklad =sRepo.findById(idTeam);
+        if(sklad.getListN().size()>Integer.parseInt(sizes1.get(2))){
+            int x = sklad.getListN().size()-Integer.parseInt(sizes1.get(2));
+            while(x>0) {
+
+                String id=sklad.getListN().get(x).getId();
+                sRepo.updateFootballer(idTeam,id,"R");
+                x--;
+            }
+        }
+        if(sklad.getListP().size()>Integer.parseInt(sizes1.get(1))){
+            int x = sklad.getListP().size()-Integer.parseInt(sizes1.get(1));
+            while(x>0) {
+
+                String id=sklad.getListP().get(x).getId();
+                sRepo.updateFootballer(idTeam,id,"R");
+                x--;
+            }
+        }
+        if(sklad.getListO().size()>Integer.parseInt(sizes1.get(0))){
+            int x = sklad.getListO().size()-Integer.parseInt(sizes1.get(0));
+            while(x>0) {
+
+                String id=sklad.getListO().get(x).getId();
+                sRepo.updateFootballer(idTeam,id,"R");
+                x--;
+            }
+        }
+
+        String url = "sklad?id="+idTeam;
+        return new RedirectView(url,true);
+    }
 }

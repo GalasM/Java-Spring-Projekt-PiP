@@ -105,5 +105,9 @@ public class SkladJDBCRepository {
 
     }
 
+    public void updateFormation(String formation, String idTeam) {
+         jdbcTemplate.update("update team set formation=? where id=?",formation,idTeam);
+    }
+
 
 }
