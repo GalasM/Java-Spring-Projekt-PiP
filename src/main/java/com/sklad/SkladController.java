@@ -143,39 +143,51 @@ public class SkladController {
 
     @GetMapping("/updateFormation")
     public RedirectView updateFormation(@RequestParam(name="formation")String formation,
-                                        @RequestParam(name="idTeam")String idTeam) {
+                                        @RequestParam(name="idTeam")String idTeam,
+                                        RedirectAttributes attr) {
         ArrayList<String> sizes1 = new ArrayList<>(Arrays.asList(formation.split("-")));
         sRepo.updateFormation(formation,idTeam);
         Sklad sklad =sRepo.findById(idTeam);
+        StringBuilder names = new StringBuilder();
         if(sklad.getListN().size()>Integer.parseInt(sizes1.get(2))){
             int x = sklad.getListN().size()-Integer.parseInt(sizes1.get(2));
+            names.append(" Na ławkę rezerwowych zdjęto: ");
             while(x>0) {
-
                 String id=sklad.getListN().get(x).getId();
-                sRepo.updateFootballer(idTeam,id,"R");
-                x--;
+                x = updateFootballer(idTeam, names, x, id);
             }
         }
         if(sklad.getListP().size()>Integer.parseInt(sizes1.get(1))){
             int x = sklad.getListP().size()-Integer.parseInt(sizes1.get(1));
+            if(names.toString().equals(""))
+                names.append(" Na ławkę rezerwowych zdjęto: ");
             while(x>0) {
 
                 String id=sklad.getListP().get(x).getId();
-                sRepo.updateFootballer(idTeam,id,"R");
-                x--;
+                x = updateFootballer(idTeam, names, x, id);
             }
         }
         if(sklad.getListO().size()>Integer.parseInt(sizes1.get(0))){
             int x = sklad.getListO().size()-Integer.parseInt(sizes1.get(0));
+            if(names.toString().equals(""))
+                names.append(" Na ławkę rezerwowych zdjęto: ");
             while(x>0) {
 
                 String id=sklad.getListO().get(x).getId();
-                sRepo.updateFootballer(idTeam,id,"R");
-                x--;
+                x = updateFootballer(idTeam, names, x, id);
             }
         }
-
+        if(names.charAt(names.length()-2)==',')
+            names.delete(names.toString().length()-2,names.toString().length()-1);
+        attr.addFlashAttribute("added","Zmieniono formacje na "+formation+names+".");
         String url = "sklad?id="+idTeam;
         return new RedirectView(url,true);
+    }
+
+    private int updateFootballer(@RequestParam(name = "idTeam") String idTeam, StringBuilder names, int x, String id) {
+        names.append(uRepo.findById(id).getImie()).append(" ").append(uRepo.findById(id).getNazwisko()).append(", ");
+        sRepo.updateFootballer(idTeam,id,"R");
+        x--;
+        return x;
     }
 }

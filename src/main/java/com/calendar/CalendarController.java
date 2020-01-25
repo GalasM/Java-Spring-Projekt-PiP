@@ -38,12 +38,12 @@ public class CalendarController {
 
     @GetMapping("/calendar")
     public String calendar(@RequestParam(name = "id", defaultValue = "1") String footballer, Model model) {
-        List<Sklad> allTeams = sRepo.findAllTeams();
-        List<Footballer> allFootballers = fRepo.findAll();
-        Footballer currentFootballer = fRepo.findById(footballer);
-        model.addAttribute("allTeams",allTeams);
-        model.addAttribute("allFootballers",allFootballers);
-        model.addAttribute("currentFootballer",currentFootballer);
+            List<Sklad> allTeams = sRepo.findAllTeams();
+            List<Footballer> allFootballers = fRepo.findAll();
+            Footballer currentFootballer = fRepo.findById(footballer);
+            model.addAttribute("allTeams", allTeams);
+            model.addAttribute("allFootballers", allFootballers);
+            model.addAttribute("currentFootballer", currentFootballer);
         return "calendar";
     }
 

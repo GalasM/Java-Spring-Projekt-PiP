@@ -2,6 +2,7 @@ package com.footballer;
 
 
 import com.sklad.SkladJDBCRepository;
+import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,8 @@ public class FootballerController {
         model.addAttribute("pozycja", footballer.getPozycja());
         String id = UUID.randomUUID().toString();
         footballer.setId(id);
+        footballer.setImie(WordUtils.capitalizeFully(footballer.getImie()));
+        footballer.setNazwisko(WordUtils.capitalizeFully(footballer.getNazwisko()));
         uRepo.insert(footballer);
         String id2 = UUID.randomUUID().toString();
         sRepo.insertFootballer(id2,null,id,null);
