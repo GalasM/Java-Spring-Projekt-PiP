@@ -22,13 +22,13 @@
 <body>
     <header class="header">
         <div class="header__container container">
-            <div class="row row--space-between">
+                <div class="row row--space-between header__wrap header__padding">
                 <div class="column header__column--wide">
                     <h1 class="header__header">Zawodnicy</h1>
                 </div>
                 <!-- if not logged -->
                 <div class="column header__column--narrow">
-                    <div class="row row--space-between">
+                    <div class="row row--space-between header__wrap">
                         <a href="/login" class="button button--white-background button--black-text">Zaloguj&nbsp;się</a>
                         <a href="/register" class="button button--black-background button--white-text button--white-border">Zarejestruj&nbsp;się</a>
                     </div>
@@ -62,6 +62,11 @@
                             <div class="row">
                                 <h2 class="section-header">Lista zadowników</h2>
                             </div>
+                            
+                        <!-- Button to Open the Modal -->
+                        <button type="button" class="button button--white-background button--black-text button--black-border margin-bot30" data-toggle="modal" data-target="#myModal">
+                                Dodaj zawodnika
+                        </button>
                             <ul th:each="message : ${addedFootballer}">
                                 <li th:text="${message}" class="alert alert-success" />
                             </ul>
@@ -87,10 +92,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Button to Open the Modal -->
-                        <button type="button" class="button button--white-background button--black-text button--black-border" data-toggle="modal" data-target="#myModal">
-                            Dodaj zawodnika
-                        </button>
                         <!-- The Modal -->
                         <div class="modal" id="myModal">
                             <div class="modal-dialog">

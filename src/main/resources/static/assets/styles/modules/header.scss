@@ -2,12 +2,15 @@
 @import 'modules/_variables';
 
 .header {
+    @include display-flex;
+    @include justify-content(space-between);
     position: relative;
     width: 100%;
     background-color: $primary-dark-blue;
 
     &__container {
         max-width: 1440px;
+        padding-left:360px;
         width: 100%;
         margin: 0 auto;
         padding: 20px 30px;
@@ -15,7 +18,7 @@
 
     &__column {
         &--wide {
-            padding-left: 360px;
+            min-width: 220px;
             max-width: calc(100% - 460px);
             width: 100%;
         }
@@ -31,5 +34,13 @@
         font-weight: $font-bold;
         font-size: 36px;
         line-height: 42px;
+    }
+
+    &__wrap{
+        flex-wrap: wrap;
+    }
+
+    &__padding{
+        padding-left:360px;
     }
 }
